@@ -6,8 +6,8 @@ class Player {
     this.x = x;
     this.y = y;
     this.imageURL = imageURL;
-    this.newX = 0;
-    this.newY = 0;
+    this.newX = 1;
+    this.newY = 1;
 
     const img = new Image()
     img.src = this.imageURL    
@@ -19,13 +19,28 @@ class Player {
   }
 
   draw = () => {
-    ctx.drawImage(this.img, this.x, this.y, 50, 50);
+    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   } 
 
-  // fix move 
   move = () => {
-    this.x += this.newX;
-    this.y += this.newY;
-  };
-  
+    this.x = this.newX;
+    this.y = this.newY;
+  }
+
+  headRight = () => {
+    return this.newX + this.width;
+  }
+
+  headLeft = () => {
+    return this.newX;
+  }
+
+  headUp = () => {
+    return this.newY;
+  }
+
+  headDown = () => {
+    return this.newY + this.height;
+  }
 }
+

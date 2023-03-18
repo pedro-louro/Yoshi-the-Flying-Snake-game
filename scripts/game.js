@@ -1,7 +1,5 @@
 console.log('json loaded')
 
-// Reminder: Add Background as a method
-
 class Game {
   constructor(player) {
     this.player = player;
@@ -37,5 +35,25 @@ class Game {
     this.player.move();
 
     this.player.draw();
+
+    this.checkGameOver();
+    
+  }
+
+  // TO FIX!!
+  checkGameOver = () => {
+    // colision with the borders
+    if (
+      this.player.headRight() === canvas.clientWidth || 
+      this.player.headLeft() === 0 ||
+      this.player.headUp() === 0 ||
+      this.player.headDown() === canvas.clientHeight
+      ) 
+      {
+        this.stop();
+        ctx.font = '30px Arial';
+        ctx.fillStyle = 'red';
+        ctx.fillText('GAME OVER', 150, 150)
+    }
   }
 }
