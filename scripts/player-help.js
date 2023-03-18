@@ -5,19 +5,47 @@ class PlayerHelp {
     this.x = x;
     this.y = y;
     this.imageURL = imageURL;
+    this.newX = x;
+    this.newY = y;
 
-    const img = new Image()
-    img.src = this.imageURL    
-    img.addEventListener('load', () => {
+    const imgHelp = new Image()
+    imgHelp.src = this.imageURL
+    imgHelp.addEventListener('load', () => {
       // once the image is loaded, draw it
-      this.img = img
-      ctx.drawImage(this.img, this.x, this.y);
+      this.imgHelp = imgHelp
+      ctx.drawImage(this.imgHelp, this.x, this.y, this.width, this.height);
     })
   }
-  draw = () => {
-    ctx.drawImage(this.img, this.x, this.y, 50, 50);
-  } 
-}
 
-// increase the snake size by repeating the image: 
-// const ptrn = ctx.createPattern(img, "repeat");
+  drawMushroom = () => {
+    ctx.drawImage(this.imgHelp, this.x, this.y, this.width, this.height)
+  }
+  randomMushroom = () => {
+    
+    const randomX = Math.floor(Math.random() * canvas.clientWidth)
+    const randomY = Math.floor(Math.random() * canvas.clientHeight)
+    ctx.clearRect(this.x, this.y, this.width, this.height)
+    ctx.drawImage(this.imgHelp, randomX, randomY, this.width, this.height)
+  }
+
+  helpArea = () => {
+    return (this.x + this.width)*(this.y + this.height)
+  }
+
+  // Idea: define each helper border to then compare with the player border for colision
+  helpRight = () => {
+    return this.newX + this.width;
+  }
+  helpLeft = () => {
+    return this.newX;
+  }
+
+  helpUp = () => {
+    return this.newY;
+  }
+
+  helpDown = () => {
+    return this.newY + this.height;
+  }
+
+}

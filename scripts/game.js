@@ -1,7 +1,7 @@
 console.log('json loaded')
 
 class Game {
-  constructor(player) {
+  constructor(player,) {
     this.player = player;
     this.interval = undefined;
 
@@ -9,6 +9,8 @@ class Game {
     background.src = 'https://st3.depositphotos.com/29384342/35129/v/450/depositphotos_351298026-stock-illustration-old-game-background-classic-retro.jpg'
     this.background = background
 
+    const mushroom = new PlayerHelp (50, 50, '/images/mario-mushroom.png', 490, 600)
+    this.mushroom = mushroom;
   }
 
   start = () => {
@@ -36,18 +38,19 @@ class Game {
 
     this.player.draw();
 
+    this.checkColisionMushroom()
+
     this.checkGameOver();
     
   }
 
-  // TO FIX!!
   checkGameOver = () => {
     // colision with the borders
     if (
-      this.player.headRight() === canvas.clientWidth || 
-      this.player.headLeft() === 0 ||
-      this.player.headUp() === 0 ||
-      this.player.headDown() === canvas.clientHeight
+      this.player.headRight() > canvas.clientWidth || 
+      this.player.headLeft() < 0 ||
+      this.player.headUp() < 0 ||
+      this.player.headDown() > canvas.clientHeight
       ) 
       {
         this.stop();
@@ -56,4 +59,29 @@ class Game {
         ctx.fillText('GAME OVER', 150, 150)
     }
   }
+
+  checkColisionMushroom = () => {
+    /* addEventListenera
+     this.bottom() < component.top() || 
+      this.top() > component.bottom() || 
+      this.right() < component.left() ||
+      this.left() > component.right()
+    a§ */
+
+    if (
+      !(this.player.headRight() < this.mushroom.helpLeft() || 
+      this.player.headLeft() > this.mushroom.helpRight() ||
+      this.player.headUp() > this.mushroom.helpDown() ||
+      this.player.headDown() < this.mushroom.helpUp())
+
+      // this.player.headArea() === this.mushroom.helpArea()
+    )
+    {
+      this.mushroom.randomMushroom();
+    }
+    else {
+      this.mushroom.drawMushroom()
+    }
+  }
+
 }

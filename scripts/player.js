@@ -6,15 +6,15 @@ class Player {
     this.x = x;
     this.y = y;
     this.imageURL = imageURL;
-    this.newX = 1;
-    this.newY = 1;
+    this.newX = x;
+    this.newY = y;
 
     const img = new Image()
     img.src = this.imageURL    
     img.addEventListener('load', () => {
       // once the image is loaded, draw it
       this.img = img
-      ctx.drawImage(this.img, this.x, this.y);
+      // ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     })
   }
 
@@ -41,6 +41,10 @@ class Player {
 
   headDown = () => {
     return this.newY + this.height;
+  }
+
+  headArea = () => {
+    return (this.newX + this.width)*(this.newY + this.height)
   }
 }
 
