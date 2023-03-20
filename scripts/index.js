@@ -6,6 +6,7 @@ const ctx = canvas.getContext('2d')
 const superMarioImage = '/images/3a9c1a03077868798ec40a61c911a28c-removebg-preview.png'
 
 const player = new Player(50, 50, superMarioImage, (canvas.clientWidth - 50) / 2, (canvas.clientHeight - 50) / 2)
+
 const game = new Game(player)
 
 let currentMoveDirection = ''

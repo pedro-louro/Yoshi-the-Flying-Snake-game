@@ -8,6 +8,7 @@ class Player {
     this.imageURL = imageURL;
     this.newX = x;
     this.newY = y;
+    this.size = []
 
     const img = new Image()
     img.src = this.imageURL    
@@ -21,6 +22,9 @@ class Player {
   draw = () => {
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   } 
+  // repeat = () => {
+  //   ctx.createPattern(this.img, "repeat-x");
+  // }
 
   move = () => {
     this.x = this.newX;
@@ -43,8 +47,5 @@ class Player {
     return this.newY + this.height;
   }
 
-  headArea = () => {
-    return (this.newX + this.width)*(this.newY + this.height)
-  }
 }
 

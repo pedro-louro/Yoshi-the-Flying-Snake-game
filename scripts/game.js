@@ -4,6 +4,7 @@ class Game {
   constructor(player,) {
     this.player = player;
     this.interval = undefined;
+    this.points = 0;
 
     const background = new Image();
     background.src = 'https://st3.depositphotos.com/29384342/35129/v/450/depositphotos_351298026-stock-illustration-old-game-background-classic-retro.jpg'
@@ -38,6 +39,7 @@ class Game {
 
     this.player.draw();
 
+
     this.checkColisionMushroom()
 
     this.checkGameOver();
@@ -61,12 +63,6 @@ class Game {
   }
 
   checkColisionMushroom = () => {
-    /* addEventListenera
-     this.bottom() < component.top() || 
-      this.top() > component.bottom() || 
-      this.right() < component.left() ||
-      this.left() > component.right()
-    a§ */
 
     if (
       !(this.player.headRight() < this.mushroom.helpLeft() || 
@@ -74,14 +70,22 @@ class Game {
       this.player.headUp() > this.mushroom.helpDown() ||
       this.player.headDown() < this.mushroom.helpUp())
 
-      // this.player.headArea() === this.mushroom.helpArea()
     )
     {
       this.mushroom.randomMushroom();
+      this.points++;
+      this.score();
     }
     else {
       this.mushroom.drawMushroom()
+      this.score();
     }
+  }
+
+  score = () => {
+    ctx.font = '10px Arial';
+    ctx.fillStyle = 'black';
+    ctx.fillText(`Score: ${this.points}`, 500, 100)
   }
 
 }

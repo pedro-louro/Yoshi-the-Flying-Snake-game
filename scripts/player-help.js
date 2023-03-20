@@ -22,30 +22,25 @@ class PlayerHelp {
   }
   randomMushroom = () => {
     
-    const randomX = Math.floor(Math.random() * canvas.clientWidth)
-    const randomY = Math.floor(Math.random() * canvas.clientHeight)
-    ctx.clearRect(this.x, this.y, this.width, this.height)
-    ctx.drawImage(this.imgHelp, randomX, randomY, this.width, this.height)
+    this.x = Math.floor(Math.random() * (canvas.clientWidth - this.width))
+    this.y = Math.floor(Math.random() * (canvas.clientHeight - this.height))
+    this.drawMushroom()
   }
 
-  helpArea = () => {
-    return (this.x + this.width)*(this.y + this.height)
-  }
 
-  // Idea: define each helper border to then compare with the player border for colision
   helpRight = () => {
-    return this.newX + this.width;
+    return this.x + this.width;
   }
   helpLeft = () => {
-    return this.newX;
+    return this.x;
   }
 
   helpUp = () => {
-    return this.newY;
+    return this.y;
   }
 
   helpDown = () => {
-    return this.newY + this.height;
+    return this.y + this.height;
   }
 
 }
