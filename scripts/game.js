@@ -1,7 +1,6 @@
-console.log('json loaded')
 
 class Game {
-  constructor(player,) {
+  constructor(player) {
     this.player = player;
     this.interval = undefined;
     this.points = 0;
@@ -10,7 +9,7 @@ class Game {
     background.src = 'https://st3.depositphotos.com/29384342/35129/v/450/depositphotos_351298026-stock-illustration-old-game-background-classic-retro.jpg'
     this.background = background
 
-    const mushroom = new PlayerHelp (50, 50, '/images/mario-mushroom.png', 490, 600)
+    const mushroom = new PlayerHelp (40, 40, '/images/mario-mushroom-2.png', 490, 600)
     this.mushroom = mushroom;
   }
 
@@ -27,7 +26,7 @@ class Game {
   }
 
   drawBackground = () => {
-    ctx.drawImage(this.background, 0, 0);
+    ctx.drawImage(this.background, 0, 0, canvas.clientWidth, canvas.clientHeight);
   }
   
   updateCanvas = () => {
@@ -39,11 +38,10 @@ class Game {
 
     this.player.draw();
 
-
-    this.checkColisionMushroom()
+    this.checkColisionMushroom();
 
     this.checkGameOver();
-    
+
   }
 
   checkGameOver = () => {
@@ -75,6 +73,9 @@ class Game {
       this.mushroom.randomMushroom();
       this.points++;
       this.score();
+      this.player.snakeArray.push({x: player.x, y: player.y})
+
+      
     }
     else {
       this.mushroom.drawMushroom()
