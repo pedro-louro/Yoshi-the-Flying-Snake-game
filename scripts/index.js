@@ -2,7 +2,7 @@
 const canvas = document.getElementById('snake')
 const ctx = canvas.getContext('2d')
 
-const player = new Player(50, 50, '/images/super-mario-player.png', (canvas.clientWidth - 50) / 2, (canvas.clientHeight - 50) / 2)
+const player = new Player(80, 60, '/images/super-mario-player.png', (canvas.clientWidth - 50) / 2, (canvas.clientHeight - 50) / 2)
 
 const game = new Game(player)
 
@@ -13,37 +13,55 @@ document.addEventListener('keydown', (event) => {
   function keepMovement () {
     switch (event.key) {
       case 'ArrowUp':
-        player.newY -=3;
+        player.newY -=6;
         player.newX = player.x
-        
-        player.horizontalVelocity = 0
-        player.verticalVelocity = -30
-
         player.currentDirection = 'up'
+
+        // to test
+        player.horizontalVelocity = 0
+        player.verticalVelocity = -2
+
+        player.addWidth = 0
+        player.addHeigth = -20
+
         break;
       case 'ArrowDown':
-        player.newY += 3;
+        player.newY += 6;
         player.newX = player.x
-        
-        player.horizontalVelocity = 0
-        player.verticalVelocity = 30
         player.currentDirection = 'down'
+
+        
+        // to test
+        player.horizontalVelocity = 0
+        player.verticalVelocity = 2
+
+        player.addWidth = 0
+        player.addHeigth = 20
         break;
       case 'ArrowLeft':
-        player.newX -=3;
+        player.newX -=6;
         player.newY = player.y
-        player.horizontalVelocity = -30
+        player.currentDirection = 'left'
+
+        // to test
+        player.horizontalVelocity = -2
         player.verticalVelocity = 0
 
-        player.currentDirection = 'left'
+        player.addWidth = -20
+        player.addHeigth = 0
+
         break;
       case 'ArrowRight':
-        player.newX += 3;
+        player.newX += 6;
         player.newY = player.y
-        player.horizontalVelocity = 30
+        player.currentDirection = 'right'
+
+        // To Test
+        player.horizontalVelocity = 2
         player.verticalVelocity = 0
 
-        player.currentDirection = 'right'
+        player.addWidth = 20
+        player.addHeigth = 0
         break;
         
     }

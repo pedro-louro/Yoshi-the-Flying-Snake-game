@@ -8,12 +8,23 @@ class Player {
     this.imageURL = imageURL;
     this.newX = x;
     this.newY = y;
-    this.snakeArray = [];
+    this.snakeHead = {x: x, y: y}
+    this.snakeArray = [{x: x - width, y: y}];
     this.currentDirection = ''
 
-    this.horizontalVelocity = 5;
-    this.verticalVelocity = 5;
+    // for drawing moving player
+    this.imageSource = 1;
+    this.imageCounter = 0;
 
+
+    // for testing
+    this.horizontalVelocity = 3;
+    this.verticalVelocity = 3;
+
+    this.addWidth = 20
+    this.addHeigth = 20
+
+    // Test ends
 
     const initialImg = new Image()
     initialImg.src = this.imageURL
@@ -32,89 +43,102 @@ class Player {
 
   }
 
+  // testMovement = () => {
+  //   this.snakeArray[0].x = this.newX
+  //   this.snakeArray[0].y = this.newY
+    
+  //   for (let i = 1; i < this.snakeArray.length; i++) {
+  //     this.snakeArray[i].x = this.snakeArray[i-1].x + this.horizontalVelocity
+  //     this.snakeArray[i].y = this.snakeArray[i-1].y + this.verticalVelocity
+  //   }
 
+  //   this.snakeArray.forEach(element => {
+  //     // console.log(element)
+  //     ctx.drawImage(this.initialImg, element.x, element.y, this.width, this.height)
+  //   })
+  // }
+
+  drawHead = () => {
+    // Initial Idea for drawing Head (static image)
+    this.snakeHead.x = this.newX
+    this.snakeHead.y = this.newY
+    ctx.drawImage(this.initialImg, this.snakeHead.x, this.snakeHead.y, this.width, this.height)
+
+    // USE FOR MOVING IMAGES
+
+    // if (this.imageSource > 8) {
+    //     this.imageSource = 1
+    //   }
+    //   this.initialImg.src = `/images/mario-fly/mario${this.imageSource}.png`
+    //   ctx.drawImage(this.initialImg, this.snakeHead.x, this.snakeHead.y, this.width, this.height)
+    //   this.imageCounter++
+      
+    //   if (this.imageCounter > 5) {
+    //     this.imageCounter = 0
+    //     this.imageSource ++
+    //   }
+      
+  }
   
   draw = () => {    
-    if (this.snakeArray.length === 0) {
-      this.snakeArray.push({x: this.newX, y: this.newY})
-      ctx.drawImage(this.initialImg, this.newX, this.newY, this.width, this.height)
-    }
-    else {
-      let previousX = this.snakeArray[0].x
-      let previousY = this.snakeArray[0].y
+    // Head to the right Position when moves
+    this.snakeArray[0].x = this.newX
+    this.snakeArray[0].y = this.newY
 
-      this.snakeArray[0].x = this.newX
-      this.snakeArray[0].y = this.newY
-      ctx.drawImage(this.initialImg, this.newX, this.newY, this.width, this.height)
-
-
-      for (let i = 1; i < this.snakeArray.length; i++) {
-        
-        let currentX = this.snakeArray[i].x;
-        let currentY = this.snakeArray[i].y;
-
-        this.snakeArray[i].x = previousX;
-        this.snakeArray[i].y = previousY;
-        ctx.drawImage(this.initialImg,this.snakeArray[i].x, this.snakeArray[i].y, this.width, this.height)
-        
-        previousX = currentX;
-        previousY = currentY;
-
-        // if (currentX === previousX && currentY < previousY){
-        //   this.snakeArray[i].x = previousX;
-        //   this.snakeArray[i].y = previousY - 30;
-        //   ctx.drawImage(this.initialImg, this.snakeArray[i].x, this.snakeArray[i].y, this.width, this.height)
-  
-        //   previousX = this.snakeArray[i].x;
-        //   previousY = this.snakeArray[i].y;
-        // }
-        // else if (currentX === previousX && currentY > previousY){
-        //   this.snakeArray[i].x = previousX;
-        //   this.snakeArray[i].y = previousY + 30;
-        //   ctx.drawImage(this.initialImg, this.snakeArray[i].x, this.snakeArray[i].y, this.width, this.height)
-  
-        //   previousX = this.snakeArray[i].x;
-        //   previousY = this.snakeArray[i].y;
-        // }
-        // else if (currentX > previousX && currentY === previousY){
-        //   this.snakeArray[i].x = previousX + 30;
-        //   this.snakeArray[i].y = previousY;
-        //   ctx.drawImage(this.initialImg,this.snakeArray[i].x, this.snakeArray[i].y, this.width, this.height)
-  
-        //   previousX = this.snakeArray[i].x;
-        //   previousY = this.snakeArray[i].y;
-        // }
-        // else if (currentX < previousX && currentY === previousY){
-        //   this.snakeArray[i].x = previousX - 30;
-        //   this.snakeArray[i].y = previousY;
-        //   ctx.drawImage(this.initialImg, this.snakeArray[i].x, this.snakeArray[i].y, this.width, this.height)
-      }
-    }
-  }
+    let previousX = this.snakeArray[0].x
+    let previousY = this.snakeArray[0].y
     
-    
-    // ctx.drawImage(this.initialImg, this.newX, this.newY, this.width, this.height)
-    // for (let i = 1; i < this.snakeArray.length; i++) {
+    for (let i = 1; i < this.snakeArray.length; i++) {
+      let currentX = this.snakeArray[i].x;
+      let currentY = this.snakeArray[i].y;
+/*       this.snakeArray[i].x = this.snakeArray[i-1].x + this.horizontalVelocity
+      this.snakeArray[i].y = this.snakeArray[i-1].y + this.verticalVelocity */
+      
+      this.snakeArray[i].x = previousX;
+      this.snakeArray[i].y = previousY;
+      previousX = currentX;
+      previousY = currentY;
+    }
 
-    //   switch (this.currentDirection) {
-    //     case 'up':   
-    //       ctx.drawImage(this.snakeTail, this.snakeArray[i].x, this.snakeArray[i].y, this.width, this.height)
-    //       break;
-    //     case 'down':
-    //       ctx.drawImage(this.snakeTail, this.snakeArray[i].x, this.snakeArray[i].y, this.width, this.height)
-    //       break;
-    //     case 'left':
-    //       ctx.drawImage(this.snakeTail, this.snakeArray[i].x, this.snakeArray[i].y, this.width, this.height)
-    //       break;
-    //     case 'right':
-    //       ctx.drawImage(this.snakeTail, this.snakeArray[i].x, this.snakeArray[i].y, this.width, this.height)
-    //       break;
+    this.snakeArray.forEach(element => {
+      // console.log(element)
+      // ctx.drawImage(this.initialImg, this.newX, this.newY, this.width, this.height)
+      this.drawHead()
+      ctx.drawImage(this.initialImg, element.x, element.y, this.width, this.height)
+    })
+    
+    // Initial Version: 
+
+    // if (this.snakeArray.length === 0) {
+    //   this.snakeArray.push({x: this.newX, y: this.newY})
+    //   ctx.drawImage(this.initialImg, this.newX, this.newY, this.width, this.height)
+    // }
+    // else {
+    //   
+    //   
+
+    //   this.snakeArray[0].x = this.newX
+    //   this.snakeArray[0].y = this.newY
+    //   ctx.drawImage(this.initialImg, this.newX, this.newY, this.width, this.height)
+
+
+    //   for (let i = 1; i < this.snakeArray.length; i++) {
+
+    //     let currentX = this.snakeArray[i].x;
+    //     let currentY = this.snakeArray[i].y;
+
+    //     this.snakeArray[i].x = previousX;
+    //     this.snakeArray[i].y = previousY;
+    //     ctx.drawImage(this.initialImg,this.snakeArray[i].x, this.snakeArray[i].y, this.width, this.height)
+        
+    //     previousX = currentX;
+    //     previousY = currentY;
+
     //   }
     // }
+
     
-    // this.snakeArray.forEach(element => {
-    //   ctx.drawImage(this.initialImg, element.x, element.y, this.width, this.height);
-    // })
+  }
 
   
 

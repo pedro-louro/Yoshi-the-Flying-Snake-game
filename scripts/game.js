@@ -12,7 +12,7 @@ class Game {
     const mushroom = new PlayerHelp (40, 40, '/images/mario-mushroom-2.png', 490, 600)
     this.mushroom = mushroom;
 
-    const enemy1 = new Enemy (60, 60, '/images/turtle-fly-movement/1-removebg-preview.png', 350, 200)
+    const enemy1 = new Enemy (80, 80, '/images/turtle-fly-movement/1-removebg-preview.png', 350, 200)
     this.enemy1 = enemy1
 
   }
@@ -39,6 +39,8 @@ class Game {
     this.drawBackground();
 
     this.player.move();
+
+    // this.player.drawHead();
 
     this.player.draw();
 
@@ -94,7 +96,12 @@ class Game {
       this.mushroom.randomMushroom();
       this.points++;
       this.score();
-      this.player.snakeArray.push({x: player.newX, y: player.newY})
+      this.player.snakeArray.push(
+        {
+          x: (player.snakeArray[this.player.snakeArray.length -1].x + player.addWidth),
+          y: (player.snakeArray[this.player.snakeArray.length -1].y + player.addHeigth)
+        }
+      )
     }
     else {
       this.mushroom.drawMushroom()
