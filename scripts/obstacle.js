@@ -16,16 +16,16 @@ class Enemy {
 
     const imgEnemy = new Image()
     imgEnemy.src = this.imageURL
-    imgEnemy.addEventListener('load', () => {
-      // once the image is loaded, draw it
-      ctx.drawImage(this.imgEnemy, this.x, this.y, this.width, this.height);
-    })
+    // imgEnemy.addEventListener('load', () => {
+    //   ctx.drawImage(this.imgEnemy, this.x, this.y, this.width, this.height);
+    // })
     this.imgEnemy = imgEnemy
   }
 
-
   draw = () => {
-    ctx.drawImage(this.imgEnemy, this.x, this.y, this.width, this.height)
+    this.imgEnemy.addEventListener('load', () => {
+      ctx.drawImage(this.imgEnemy, this.x, this.y, this.width, this.height);
+    })
   }
 
   start = () => {
@@ -84,18 +84,19 @@ class Enemy {
   }
 
   drop = () => {
-    this.y += 3
+    // this.y += 3
+    // this.draw()
+    this.toDrop.forEach(drop => {
+    drop[1] += 3
+    this.y = drop[1]
     this.draw()
-
-      // this.toDrop.forEach(drop => {
-    //   drop[1] += 3
-    //   this.y = drop[1]
-    //   this.draw()
-      
-    //   if (drop[1] > canvas.clientHeight) {
-    //     this.toDrop.shift()
-    //   }
-    // })
+    console.log(this.toDrop)
+    
+      if (drop[1] > canvas.clientHeight) {
+        this.toDrop.shift()
+        console.log(this.toDrop)
+      }
+    })
   }
   
   enemyRight = () => {
@@ -112,5 +113,4 @@ class Enemy {
   enemyDown = () => {
     return this.y + this.height;
   }
-
 }

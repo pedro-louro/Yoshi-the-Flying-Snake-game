@@ -4,15 +4,17 @@ const ctx = canvas.getContext('2d')
 
 const player = new Player(60, 50, '/images/yoshi-right.png', (canvas.clientWidth - 50) / 2, (canvas.clientHeight - 50) / 2)
 const game = new Game(player)
+game.firstScreen()
 
 document.addEventListener('keydown', (event) => {
   // avoid default behaviours from the browser for the arrows
   event.preventDefault();
 
-  if (event.key === ' ') {
+  if (event.key === ' ' && game.status === '') {
     game.start()
+    game.status = 'Started'
+    console.log(game.status)
   }
-
   // if (event.key === ' ') {
   //   game.start()
   //   game.gameOver = 'no - game is running'
@@ -114,8 +116,5 @@ document.addEventListener('keydown', (event) => {
   }
 
 });
-game.firstScreen()
-// game.start()
-
 
 

@@ -10,18 +10,19 @@ class PlayerHelp {
 
     const imgHelp = new Image()
     imgHelp.src = this.imageURL
-    imgHelp.addEventListener('load', () => {
-      // once the image is loaded, draw it
-      this.imgHelp = imgHelp
-      ctx.drawImage(this.imgHelp, this.x, this.y, this.width, this.height);
-    })
-  }
+    this.imgHelp = imgHelp
+    // imgHelp.addEventListener('load', () => {
+  //     ctx.drawImage(this.imgHelp, this.x, this.y, this.width, this.height);
+    //  })
+   }
 
   drawMushroom = () => {
-    ctx.drawImage(this.imgHelp, this.x, this.y, this.width, this.height)
+    // this.imgHelp.addEventListener('load', () => {
+      ctx.drawImage(this.imgHelp, this.x, this.y, this.width, this.height)
+    // })
   }
+
   randomMushroom = () => {
-    
     this.x = Math.floor(Math.random() * (canvas.clientWidth - this.width))
     this.y = Math.floor(Math.random() * (canvas.clientHeight - this.height))
     this.drawMushroom()

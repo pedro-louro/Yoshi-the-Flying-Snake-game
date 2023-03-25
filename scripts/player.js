@@ -31,11 +31,14 @@ class Player {
     const snakeTail = new Image()
     snakeTail.src = ''
     this.snakeTail = snakeTail
-    // img.addEventListener('load', () => {
-    //   // once the image is loaded, draw it
-      
-    //   // ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    // })
+    
+    initialImg.addEventListener('load', () => {
+      ctx.drawImage(this.initialImg, this.x, this.y, this.width, this.height);
+    })
+
+    snakeTail.addEventListener('load', () => {
+      ctx.drawImage(this.snakeTail, this.x, this.y, this.width, this.height);
+    })
     // this.snakeArray.push([this.initialImg, this.x, this.y])
     // console.log(this.snakeArray)
 
@@ -44,21 +47,6 @@ class Player {
     // this.snakeTail = snakeTail  
 
   }
-
-  // testMovement = () => {
-  //   this.snakeArray[0].x = this.newX
-  //   this.snakeArray[0].y = this.newY
-    
-  //   for (let i = 1; i < this.snakeArray.length; i++) {
-  //     this.snakeArray[i].x = this.snakeArray[i-1].x + this.horizontalVelocity
-  //     this.snakeArray[i].y = this.snakeArray[i-1].y + this.verticalVelocity
-  //   }
-
-  //   this.snakeArray.forEach(element => {
-  //     // console.log(element)
-  //     ctx.drawImage(this.initialImg, element.x, element.y, this.width, this.height)
-  //   })
-  // }
 
   drawHead = () => {
     // Initial Idea for drawing Head (static image)

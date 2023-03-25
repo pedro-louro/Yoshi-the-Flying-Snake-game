@@ -4,7 +4,7 @@ class Game {
     this.interval = undefined;
     this.interval1 = undefined;
     this.points = 0;
-    this.gameOver = ''
+    this.status = ''
     this.defaultPlayer = player
 
     // TODO: add the following buttons as HTML? 
@@ -47,7 +47,6 @@ class Game {
 
   firstScreen = () => {
     this.drawBackground()
-    
     this.startButton.addEventListener('load', () => { 
       ctx.font = '30px Arial';
       ctx.fillStyle = 'red';
@@ -101,9 +100,7 @@ class Game {
     this.player.draw();
     this.enemy1.moveHorizontal();
     this.enemy1.fly();
-    if (this.points % 5 === 0) {
-      this.enemy2.drop()
-    }
+    this.enemy2.drop()
     this.checkColisionMushroom();
     this.checkGameOver();
   }
@@ -158,7 +155,7 @@ class Game {
       if (this.points % 5 === 0) {
         this.enemy2.randomX()
         this.enemy2.y = 0
-        // this.toDrop.push([this.enemy2.x, 0])
+        this.enemy2.toDrop.push([this.enemy2.x, 0])
     }
     }
     else {
