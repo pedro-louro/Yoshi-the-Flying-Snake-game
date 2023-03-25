@@ -39,7 +39,10 @@ class Game {
 
     const enemy1 = new Enemy (80, 80, '/images/turtle-fly-movement/1-removebg-preview.png', 150, 200)
     this.enemy1 = enemy1
-  
+
+    const enemy2 = new Enemy (50, 50, '/images/turtle-shell.png', 150, 0)
+    this.enemy2 = enemy2
+
   }
 
   firstScreen = () => {
@@ -60,7 +63,7 @@ class Game {
   }
 
   start = () => {
-    this.interval = setInterval(this.updateCanvas, 10)
+    this.interval = setInterval(this.updateCanvas, 20)
   };
 
   stop = () => {
@@ -75,6 +78,22 @@ class Game {
     ctx.drawImage(this.background, 0, 0, canvas.clientWidth, canvas.clientHeight);
   }
   
+  // Initial updateCanvas
+
+  // updateCanvas = () => {
+  //   this.clear();
+  //   this.drawBackground();
+  //   this.player.move();
+  //   this.player.draw();
+  //   this.enemy1.moveHorizontal();
+  //   this.enemy1.fly();
+  //   this.enemy2.drop();
+  //   this.enemy2.draw()
+  //   this.checkColisionMushroom();
+  //   this.checkGameOver();
+  // }
+
+  // update canvas with enemy drop:
   updateCanvas = () => {
     this.clear();
     this.drawBackground();
@@ -82,9 +101,13 @@ class Game {
     this.player.draw();
     this.enemy1.moveHorizontal();
     this.enemy1.fly();
+    if (this.points % 5 === 0) {
+      this.enemy2.drop()
+    }
     this.checkColisionMushroom();
     this.checkGameOver();
   }
+
 
   checkGameOver = () => {
     // colision with the borders
@@ -132,6 +155,11 @@ class Game {
           y: (player.snakeArray[this.player.snakeArray.length -1].y + player.addHeigth)
         }
       )
+      if (this.points % 5 === 0) {
+        this.enemy2.randomX()
+        this.enemy2.y = 0
+        // this.toDrop.push([this.enemy2.x, 0])
+    }
     }
     else {
       this.mushroom.drawMushroom()

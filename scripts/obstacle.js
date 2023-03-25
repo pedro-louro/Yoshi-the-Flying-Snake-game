@@ -11,6 +11,8 @@ class Enemy {
     this.verticalSpeed = 1
     this.imageSource = 1;
     this.imageCounter = 0;
+    this.points = 0
+    this.toDrop = []
 
     const imgEnemy = new Image()
     imgEnemy.src = this.imageURL
@@ -50,6 +52,13 @@ class Enemy {
     this.y = Math.floor(Math.random() * (canvas.clientHeight - this.height))
   }
 
+  randomX = () => {
+    this.x = Math.floor(Math.random() * (canvas.clientWidth - this.width))
+  }
+  randomY = () => {
+    this.x = Math.floor(Math.random() * (canvas.clientWidth - this.width))
+  }
+
   moveHorizontal = () => {
     if (this.enemyRight() > canvas.clientWidth) {
       this.x += this.horizontalSpeed
@@ -75,9 +84,20 @@ class Enemy {
   }
 
   drop = () => {
-    this.verticalSpeed = 1
-    this.y += this.verticalSpeed
+    this.y += 3
+    this.draw()
+
+      // this.toDrop.forEach(drop => {
+    //   drop[1] += 3
+    //   this.y = drop[1]
+    //   this.draw()
+      
+    //   if (drop[1] > canvas.clientHeight) {
+    //     this.toDrop.shift()
+    //   }
+    // })
   }
+  
   enemyRight = () => {
     return this.x + this.width;
   }
