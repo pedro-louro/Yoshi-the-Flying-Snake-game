@@ -1,5 +1,5 @@
 class PlayerHelp {
-  constructor(width, height, imageURL, x, y) {
+  constructor(width, height, imageURL, x, y, player) {
     this.width = width;
     this.height = height;
     this.x = x;
@@ -8,6 +8,7 @@ class PlayerHelp {
     this.newX = x;
     this.newY = y;
     this.toDrop = []
+    this.player = player
 
     const imgHelp = new Image()
     imgHelp.src = this.imageURL
@@ -37,14 +38,12 @@ class PlayerHelp {
   }
 
   drop = () => {
-    console.log(this.toDrop)
     this.toDrop.forEach(drop => {
     drop[1] += 3
     this.y = drop[1]
     this.draw()
       if (drop[1] > canvas.clientHeight) {
         this.toDrop.shift()
-        console.log(this.toDrop)
       }
     })
   }
@@ -63,6 +62,18 @@ class PlayerHelp {
 
   helpDown = () => {
     return this.y + this.height;
+  }
+
+  helpCollision = () => {
+    if (
+      !(this.player.headRight() < this.helpLeft() || 
+      this.player.headLeft() > this.helpRight() ||
+      this.player.headUp() > this.helpDown() ||
+      this.player.headDown() < this.helpUp())
+      )
+      {
+        return true
+      }
   }
 
 }

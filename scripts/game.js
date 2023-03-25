@@ -34,7 +34,7 @@ class Game {
       ctx.drawImage(this.background, 0, 0, canvas.clientWidth, canvas.clientHeight);
     })
 
-    const mushroom = new PlayerHelp (40, 40, '/images/mario-mushroom-2.png', 200, 400)
+    const mushroom = new PlayerHelp (40, 40, '/images/mario-mushroom-2.png', 200, 400, this.player)
     this.mushroom = mushroom;
 
     const enemy1 = new Enemy (80, 80, '/images/turtle-fly-movement/1-removebg-preview.png', 150, 200, this.player)
@@ -43,7 +43,7 @@ class Game {
     const enemy2 = new Enemy (50, 50, '/images/turtle-shell.png', 150, 0, this.player)
     this.enemy2 = enemy2
 
-    const flower = new PlayerHelp (50, 50, '/images/flower.png', 200, 400)
+    const flower = new PlayerHelp (50, 50, '/images/flower.png', 0, 0, this.player)
     this.flower = flower
 
   }
@@ -136,10 +136,7 @@ class Game {
   checkColisionMushroom = () => {
 
     if (
-      !(this.player.headRight() < this.mushroom.helpLeft() || 
-      this.player.headLeft() > this.mushroom.helpRight() ||
-      this.player.headUp() > this.mushroom.helpDown() ||
-      this.player.headDown() < this.mushroom.helpUp())
+      this.mushroom.helpCollision()
     )
     {
       this.mushroom.randomMushroom();
@@ -160,8 +157,11 @@ class Game {
         this.flower.randomX()
         this.flower.y = 0
         this.flower.toDrop.push([this.flower.x, 0])
-        this.points += 10
       }
+    }
+    else if (this.flower.helpCollision()) {
+      // this.points += 3
+      this.flower.toDrop.shift()
     }
     else {
       this.mushroom.draw()
