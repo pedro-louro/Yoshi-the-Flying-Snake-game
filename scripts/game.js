@@ -4,7 +4,11 @@ class Game {
     this.interval = undefined;
     this.interval1 = undefined;
     this.points = 0;
+    this.gameOver = ''
+    this.defaultPlayer = player
 
+    // TODO: add the following buttons as HTML? 
+//--------------------------------------------
     const startButton = new Image();
     this.startButton = startButton;
     startButton.src = '/images/start.png';
@@ -21,29 +25,30 @@ class Game {
     this.gameOver = gameOver
     gameOver.src = '/images/game-over.png'
 
+//--------------------------------------------
+
     const background = new Image();
     background.src = 'https://st3.depositphotos.com/29384342/35129/v/450/depositphotos_351298026-stock-illustration-old-game-background-classic-retro.jpg'
     this.background = background
+    this.background.addEventListener('load', () => {
+      ctx.drawImage(this.background, 0, 0, canvas.clientWidth, canvas.clientHeight);
+    })
 
     const mushroom = new PlayerHelp (40, 40, '/images/mario-mushroom-2.png', 200, 400)
     this.mushroom = mushroom;
 
     const enemy1 = new Enemy (80, 80, '/images/turtle-fly-movement/1-removebg-preview.png', 150, 200)
     this.enemy1 = enemy1
-
-   
   
-
   }
 
   firstScreen = () => {
     this.drawBackground()
-
-    ctx.font = '30px Arial';
-    ctx.fillStyle = 'red';
-    ctx.fillText('Press SPACE to Start', (canvas.clientWidth/2) - 100, (canvas.clientHeight/2) - 250)
     
-    this.startButton.addEventListener('load', () => {
+    this.startButton.addEventListener('load', () => { 
+      ctx.font = '30px Arial';
+      ctx.fillStyle = 'red';
+      ctx.fillText('Press SPACE to Start', (canvas.clientWidth/2) - 100, (canvas.clientHeight/2) - 250)
       ctx.drawImage(this.startButton, canvas.clientWidth/2 - 200, canvas.clientHeight/2 - 250)
     })
     this.arrowsImage.addEventListener('load', () => {
@@ -52,9 +57,6 @@ class Game {
     this.controlsButton.addEventListener('load', () => {
       ctx.drawImage(this.controlsButton, canvas.clientWidth/2 - 75, canvas.clientHeight/2 +50, 175, 125)
     })
-
-
-
   }
 
   start = () => {
@@ -75,23 +77,13 @@ class Game {
   
   updateCanvas = () => {
     this.clear();
-
     this.drawBackground();
-
     this.player.move();
-
-    // this.player.drawHead();
-
     this.player.draw();
-
     this.enemy1.moveHorizontal();
-
     this.enemy1.fly();
-
     this.checkColisionMushroom();
-
     this.checkGameOver();
-
   }
 
   checkGameOver = () => {
@@ -105,6 +97,7 @@ class Game {
       {
         this.stop();
         ctx.drawImage(this.gameOver, (canvas.clientWidth / 2) - (this.gameOver.width / 2), (canvas.clientHeight / 2) - (this.gameOver.height / 2))
+        this.gameOver = 'yes'
       }
 
     // colision with enemy
@@ -116,13 +109,8 @@ class Game {
       ) 
       {
         this.stop();
-        // ctx.font = '30px Arial';
-        // ctx.fillStyle = 'red';
-        // ctx.fillText('GAME OVER', (canvas.clientWidth/2) - 100, (canvas.clientHeight/2) - 250)
-        
-        this.gameOver.addEventListener('load', () => {
-          ctx.drawImage(this.gameOver, (canvas.clientWidth / 2) - (this.gameOver.width / 2), (canvas.clientHeight / 2) - (this.gameOver.height / 2))
-        })
+        ctx.drawImage(this.gameOver, (canvas.clientWidth / 2) - (this.gameOver.width / 2), (canvas.clientHeight / 2) - (this.gameOver.height / 2))
+        this.gameOver = 'yes'
       }
   }
 
@@ -133,7 +121,6 @@ class Game {
       this.player.headLeft() > this.mushroom.helpRight() ||
       this.player.headUp() > this.mushroom.helpDown() ||
       this.player.headDown() < this.mushroom.helpUp())
-
     )
     {
       this.mushroom.randomMushroom();

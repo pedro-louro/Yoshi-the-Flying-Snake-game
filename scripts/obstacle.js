@@ -7,7 +7,8 @@ class Enemy {
     this.imageURL = imageURL;
     this.newX = x;
     this.newY = y;
-    this.speed = 1
+    this.horizontalSpeed = 1
+    this.verticalSpeed = 1
     this.imageSource = 1;
     this.imageCounter = 0;
 
@@ -45,23 +46,38 @@ class Enemy {
   }
   
   random = () => {
-    
     this.x = Math.floor(Math.random() * (canvas.clientWidth - this.width))
     this.y = Math.floor(Math.random() * (canvas.clientHeight - this.height))
   }
 
   moveHorizontal = () => {
     if (this.enemyRight() > canvas.clientWidth) {
-      this.x += this.speed
-      this.speed = -1;
+      this.x += this.horizontalSpeed
+      this.horizontalSpeed = -1;
     }
     else if (this.enemyLeft() < 0) {
-      this.x += this.speed
-      this.speed = 1
+      this.x += this.horizontalSpeed
+      this.horizontalSpeed = 1
     }
-    this.x += this.speed
+    this.x += this.horizontalSpeed
   }
 
+  moveVertical = () => {
+    if (this.enemyDown() < canvas.clientHeight) {
+      this.y += this.verticalSpeed
+      this.verticalSpeed = 1;
+    }
+    else if (this.enemyUp() < 0) {
+      this.y += this.verticalSpeed
+      this.verticalSpeed = -1
+    }
+    this.y += this.verticalSpeed
+  }
+
+  drop = () => {
+    this.verticalSpeed = 1
+    this.y += this.verticalSpeed
+  }
   enemyRight = () => {
     return this.x + this.width;
   }

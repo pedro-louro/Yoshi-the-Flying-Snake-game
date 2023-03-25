@@ -3,7 +3,6 @@ const canvas = document.getElementById('snake')
 const ctx = canvas.getContext('2d')
 
 const player = new Player(60, 50, '/images/yoshi-right.png', (canvas.clientWidth - 50) / 2, (canvas.clientHeight - 50) / 2)
-
 const game = new Game(player)
 
 document.addEventListener('keydown', (event) => {
@@ -13,6 +12,17 @@ document.addEventListener('keydown', (event) => {
   if (event.key === ' ') {
     game.start()
   }
+
+  // if (event.key === ' ') {
+  //   game.start()
+  //   game.gameOver = 'no - game is running'
+  // }
+
+  // else if (event.key === ' ' && game.gameOver === 'yes') {
+  //   player = new Player(60, 50, '/images/yoshi-right.png', (canvas.clientWidth - 50) / 2, (canvas.clientHeight - 50) / 2)
+  //   game = new Game(player)
+  //   game.start()
+  // }
 
   function keepMovement () {
     switch (event.key) {
