@@ -37,10 +37,10 @@ class Game {
     const mushroom = new PlayerHelp (40, 40, '/images/mario-mushroom-2.png', 200, 400)
     this.mushroom = mushroom;
 
-    const enemy1 = new Enemy (80, 80, '/images/turtle-fly-movement/1-removebg-preview.png', 150, 200)
+    const enemy1 = new Enemy (80, 80, '/images/turtle-fly-movement/1-removebg-preview.png', 150, 200, this.player)
     this.enemy1 = enemy1
 
-    const enemy2 = new Enemy (50, 50, '/images/turtle-shell.png', 150, 0)
+    const enemy2 = new Enemy (50, 50, '/images/turtle-shell.png', 150, 0, this.player)
     this.enemy2 = enemy2
 
   }
@@ -121,12 +121,7 @@ class Game {
       }
 
     // colision with enemy
-    else if (
-      !(this.player.headRight() < this.enemy1.enemyLeft() || 
-      this.player.headLeft() > this.enemy1.enemyRight() ||
-      this.player.headUp() > this.enemy1.enemyDown() ||
-      this.player.headDown() < this.enemy1.enemyUp())
-      ) 
+    else if (this.enemy1.enemyCollision() || this.enemy2.enemyCollision()) 
       {
         this.stop();
         ctx.drawImage(this.gameOver, (canvas.clientWidth / 2) - (this.gameOver.width / 2), (canvas.clientHeight / 2) - (this.gameOver.height / 2))

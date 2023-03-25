@@ -1,10 +1,11 @@
 class Enemy {
-  constructor(width, height, imageURL, x, y) {
+  constructor(width, height, imageURL, x, y, player) {
     this.width = width;
     this.height = height;
     this.x = x;
     this.y = y;
     this.imageURL = imageURL;
+    this.player = player
     this.newX = x;
     this.newY = y;
     this.horizontalSpeed = 1
@@ -23,9 +24,7 @@ class Enemy {
   }
 
   draw = () => {
-    this.imgEnemy.addEventListener('load', () => {
-      ctx.drawImage(this.imgEnemy, this.x, this.y, this.width, this.height);
-    })
+    ctx.drawImage(this.imgEnemy, this.x, this.y, this.width, this.height);
   }
 
   start = () => {
@@ -112,5 +111,17 @@ class Enemy {
 
   enemyDown = () => {
     return this.y + this.height;
+  }
+
+  enemyCollision = () => {
+    if (
+      !(this.player.headRight() < this.enemyLeft() || 
+      this.player.headLeft() > this.enemyRight() ||
+      this.player.headUp() > this.enemyDown() ||
+      this.player.headDown() < this.enemyUp())
+      )
+      {
+        return true
+      }
   }
 }
