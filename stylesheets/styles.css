@@ -1,6 +1,12 @@
+/* body {
+  background: url('/images/old-tv-2.png') no-repeat center center fixed;
+  width:inherit;
+  height:inherit;
+} */
 canvas {
   border: 2px solid black;
   display: block;
   margin: auto;
-  padding: 0;
+  padding: auto;
 }
+

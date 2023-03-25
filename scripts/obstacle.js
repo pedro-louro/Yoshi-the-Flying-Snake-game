@@ -93,7 +93,6 @@ class Enemy {
     
       if (drop[1] > canvas.clientHeight) {
         this.toDrop.shift()
-        console.log(this.toDrop)
       }
     })
   }

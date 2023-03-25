@@ -43,6 +43,9 @@ class Game {
     const enemy2 = new Enemy (50, 50, '/images/turtle-shell.png', 150, 0, this.player)
     this.enemy2 = enemy2
 
+    const flower = new PlayerHelp (50, 50, '/images/flower.png', 200, 400)
+    this.flower = flower
+
   }
 
   firstScreen = () => {
@@ -100,7 +103,8 @@ class Game {
     this.player.draw();
     this.enemy1.moveHorizontal();
     this.enemy1.fly();
-    this.enemy2.drop()
+    this.enemy2.drop();
+    this.flower.drop();
     this.checkColisionMushroom();
     this.checkGameOver();
   }
@@ -151,10 +155,16 @@ class Game {
         this.enemy2.randomX()
         this.enemy2.y = 0
         this.enemy2.toDrop.push([this.enemy2.x, 0])
-    }
+      }
+      if (this.points % 11 === 0) {
+        this.flower.randomX()
+        this.flower.y = 0
+        this.flower.toDrop.push([this.flower.x, 0])
+        this.points += 10
+      }
     }
     else {
-      this.mushroom.drawMushroom()
+      this.mushroom.draw()
       this.score();
     }
   }

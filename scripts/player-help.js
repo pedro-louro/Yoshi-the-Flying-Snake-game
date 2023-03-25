@@ -7,6 +7,7 @@ class PlayerHelp {
     this.imageURL = imageURL;
     this.newX = x;
     this.newY = y;
+    this.toDrop = []
 
     const imgHelp = new Image()
     imgHelp.src = this.imageURL
@@ -16,7 +17,7 @@ class PlayerHelp {
     //  })
    }
 
-  drawMushroom = () => {
+  draw = () => {
     // this.imgHelp.addEventListener('load', () => {
       ctx.drawImage(this.imgHelp, this.x, this.y, this.width, this.height)
     // })
@@ -25,7 +26,27 @@ class PlayerHelp {
   randomMushroom = () => {
     this.x = Math.floor(Math.random() * (canvas.clientWidth - this.width))
     this.y = Math.floor(Math.random() * (canvas.clientHeight - this.height))
-    this.drawMushroom()
+    this.draw()
+  }
+
+  randomX = () => {
+    this.x = Math.floor(Math.random() * (canvas.clientWidth - this.width))
+  }
+  randomY = () => {
+    this.x = Math.floor(Math.random() * (canvas.clientWidth - this.width))
+  }
+
+  drop = () => {
+    console.log(this.toDrop)
+    this.toDrop.forEach(drop => {
+    drop[1] += 3
+    this.y = drop[1]
+    this.draw()
+      if (drop[1] > canvas.clientHeight) {
+        this.toDrop.shift()
+        console.log(this.toDrop)
+      }
+    })
   }
 
 
