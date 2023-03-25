@@ -8,7 +8,6 @@ class Game {
     const startButton = new Image();
     this.startButton = startButton;
     startButton.src = '/images/start.png';
-
     
     const controlsButton = new Image();
     this.controlsButton = controlsButton;
@@ -17,6 +16,10 @@ class Game {
     const arrowsImage = new Image();
     arrowsImage.src = '/images/arrows.png';
     this.arrowsImage = arrowsImage;
+
+    const gameOver = new Image();
+    this.gameOver = gameOver
+    gameOver.src = '/images/game-over.png'
 
     const background = new Image();
     background.src = 'https://st3.depositphotos.com/29384342/35129/v/450/depositphotos_351298026-stock-illustration-old-game-background-classic-retro.jpg'
@@ -28,6 +31,7 @@ class Game {
     const enemy1 = new Enemy (80, 80, '/images/turtle-fly-movement/1-removebg-preview.png', 150, 200)
     this.enemy1 = enemy1
 
+   
   
 
   }
@@ -100,10 +104,9 @@ class Game {
       ) 
       {
         this.stop();
-        ctx.font = '30px Arial';
-        ctx.fillStyle = 'red';
-        ctx.fillText('GAME OVER', 150, 150)
-    }
+        ctx.drawImage(this.gameOver, (canvas.clientWidth / 2) - (this.gameOver.width / 2), (canvas.clientHeight / 2) - (this.gameOver.height / 2))
+      }
+
     // colision with enemy
     else if (
       !(this.player.headRight() < this.enemy1.enemyLeft() || 
@@ -113,10 +116,14 @@ class Game {
       ) 
       {
         this.stop();
-        ctx.font = '30px Arial';
-        ctx.fillStyle = 'red';
-        ctx.fillText('GAME OVER', (canvas.clientWidth/2) - 100, (canvas.clientHeight/2) - 250)
-    }
+        // ctx.font = '30px Arial';
+        // ctx.fillStyle = 'red';
+        // ctx.fillText('GAME OVER', (canvas.clientWidth/2) - 100, (canvas.clientHeight/2) - 250)
+        
+        this.gameOver.addEventListener('load', () => {
+          ctx.drawImage(this.gameOver, (canvas.clientWidth / 2) - (this.gameOver.width / 2), (canvas.clientHeight / 2) - (this.gameOver.height / 2))
+        })
+      }
   }
 
   checkColisionMushroom = () => {
