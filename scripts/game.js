@@ -5,20 +5,56 @@ class Game {
     this.interval1 = undefined;
     this.points = 0;
 
+    const startButton = new Image();
+    this.startButton = startButton;
+    startButton.src = '/images/start.png';
+
+    
+    const controlsButton = new Image();
+    this.controlsButton = controlsButton;
+    controlsButton.src = '/images/controls-button.png';
+
+    const arrowsImage = new Image();
+    arrowsImage.src = '/images/arrows.png';
+    this.arrowsImage = arrowsImage;
+
     const background = new Image();
     background.src = 'https://st3.depositphotos.com/29384342/35129/v/450/depositphotos_351298026-stock-illustration-old-game-background-classic-retro.jpg'
     this.background = background
 
-    const mushroom = new PlayerHelp (40, 40, '/images/mario-mushroom-2.png', 490, 600)
+    const mushroom = new PlayerHelp (40, 40, '/images/mario-mushroom-2.png', 200, 400)
     this.mushroom = mushroom;
 
-    const enemy1 = new Enemy (80, 80, '/images/turtle-fly-movement/1-removebg-preview.png', 350, 200)
+    const enemy1 = new Enemy (80, 80, '/images/turtle-fly-movement/1-removebg-preview.png', 150, 200)
     this.enemy1 = enemy1
+
+  
+
+  }
+
+  firstScreen = () => {
+    this.drawBackground()
+
+    ctx.font = '30px Arial';
+    ctx.fillStyle = 'red';
+    ctx.fillText('Press SPACE to Start', (canvas.clientWidth/2) - 100, (canvas.clientHeight/2) - 250)
+    
+    this.startButton.addEventListener('load', () => {
+      ctx.drawImage(this.startButton, canvas.clientWidth/2 - 200, canvas.clientHeight/2 - 250)
+    })
+    this.arrowsImage.addEventListener('load', () => {
+      ctx.drawImage(this.arrowsImage, canvas.clientWidth/2 - 75, canvas.clientHeight/2 +140, 150, 100)
+    })
+    this.controlsButton.addEventListener('load', () => {
+      ctx.drawImage(this.controlsButton, canvas.clientWidth/2 - 75, canvas.clientHeight/2 +50, 175, 125)
+    })
+
+
 
   }
 
   start = () => {
-    this.interval = setInterval(this.updateCanvas, 20)
+    this.interval = setInterval(this.updateCanvas, 10)
   };
 
   stop = () => {
@@ -79,7 +115,7 @@ class Game {
         this.stop();
         ctx.font = '30px Arial';
         ctx.fillStyle = 'red';
-        ctx.fillText('GAME OVER', 150, 150)
+        ctx.fillText('GAME OVER', (canvas.clientWidth/2) - 100, (canvas.clientHeight/2) - 250)
     }
   }
 
@@ -110,9 +146,9 @@ class Game {
   }
 
   score = () => {
-    ctx.font = '10px Arial';
+    ctx.font = '20px Arial';
     ctx.fillStyle = 'black';
-    ctx.fillText(`Score: ${this.points}`, 500, 100)
+    ctx.fillText(`Score: ${this.points}`, 800, 50)
   }
 
 }

@@ -29,17 +29,10 @@ class Enemy {
     this.interval = setInterval(this.fly, 50)
   };
 
-  fly = () => {
-    // ctx.clearRect(this.x, this.y, canvas.clientWidth, canvas.clientHeight);
-  
+  fly = () => {  
     if (this.imageSource > 8) {
       this.imageSource = 1
     }
-    // else if (this.imageSource !== this.previousImageSource) {
-    //   this.imgEnemy.src = `/images/turtle-fly-movement/${this.imageSource}-removebg-preview.png`
-    //   ctx.drawImage(this.imgEnemy, this.x, this.y, this.width, this.height)
-    //   this.previousImageSource++
-    // }
     this.imgEnemy.src = `/images/turtle-fly-movement/${this.imageSource}-removebg-preview.png`
     ctx.drawImage(this.imgEnemy, this.x, this.y, this.width, this.height)
     this.imageCounter++

@@ -16,7 +16,6 @@ class Player {
     this.imageSource = 1;
     this.imageCounter = 0;
 
-
     // for testing
     this.horizontalVelocity = 3;
     this.verticalVelocity = 3;
@@ -25,10 +24,13 @@ class Player {
     this.addHeigth = 20
 
     // Test ends
-
     const initialImg = new Image()
     initialImg.src = this.imageURL
     this.initialImg = initialImg
+
+    const snakeTail = new Image()
+    snakeTail.src = ''
+    this.snakeTail = snakeTail
     // img.addEventListener('load', () => {
     //   // once the image is loaded, draw it
       
@@ -62,9 +64,25 @@ class Player {
     // Initial Idea for drawing Head (static image)
     this.snakeHead.x = this.newX
     this.snakeHead.y = this.newY
+
+    switch (this.currentDirection) {
+      case 'up':
+        this.initialImg.src = '/images/yoshi-up.png'
+        break;
+      case 'down':
+        this.initialImg.src = '/images/yoshi-down.png'
+        break;
+      case 'left':
+        this.initialImg.src = '/images/yoshi-left.png'
+        break;
+      case 'right':
+        this.initialImg.src = '/images/yoshi-right.png'
+        break;    
+    }
+    
     ctx.drawImage(this.initialImg, this.snakeHead.x, this.snakeHead.y, this.width, this.height)
 
-    // USE FOR MOVING IMAGES
+    // test FOR MOVING IMAGES
 
     // if (this.imageSource > 8) {
     //     this.imageSource = 1
@@ -77,11 +95,32 @@ class Player {
     //     this.imageCounter = 0
     //     this.imageSource ++
     //   }
-      
   }
+
+  // rotate = () => {
+  //   ctx.save();
+  //   ctx.translate(canvas.width/2,canvas.height/2);
+  //   ctx.rotate(90*Math.PI/180);
+  //   ctx.drawImage(this.initialImg,-this.initialImg.width/2,-this.initialImg.width/2);
+  //   ctx.restore();
+  // }
   
   draw = () => {    
-    // Head to the right Position when moves
+    switch (this.currentDirection) {
+      case 'up':
+        this.snakeTail.src = '/images/yoshi-tail-up.png'
+        break;
+      case 'down':
+        this.snakeTail.src = '/images/yoshi-tail-down.png'
+        break;
+      case 'left':
+        this.snakeTail.src = '/images/yoshi-tail-left.png'
+        break;
+      case 'right':
+        this.snakeTail.src = '/images/yoshi-tail-right.png'
+        break;    
+    }
+
     this.snakeArray[0].x = this.newX
     this.snakeArray[0].y = this.newY
 
@@ -101,12 +140,11 @@ class Player {
     }
 
     this.snakeArray.forEach(element => {
-      // console.log(element)
-      // ctx.drawImage(this.initialImg, this.newX, this.newY, this.width, this.height)
-      this.drawHead()
-      ctx.drawImage(this.initialImg, element.x, element.y, this.width, this.height)
+      // this.drawHead()
+      ctx.drawImage(this.snakeTail, element.x, element.y, this.width, this.height)
     })
-    
+    this.drawHead()
+
     // Initial Version: 
 
     // if (this.snakeArray.length === 0) {
@@ -139,12 +177,6 @@ class Player {
 
     
   }
-
-  
-
-
-  // FIX MOVE
-  //Images are added now, but the snake movement is not correct yet
   move = () => {
     
     this.x = this.newX;

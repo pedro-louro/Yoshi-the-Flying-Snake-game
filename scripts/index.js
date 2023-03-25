@@ -2,7 +2,7 @@
 const canvas = document.getElementById('snake')
 const ctx = canvas.getContext('2d')
 
-const player = new Player(80, 60, '/images/super-mario-player.png', (canvas.clientWidth - 50) / 2, (canvas.clientHeight - 50) / 2)
+const player = new Player(60, 50, '/images/yoshi-right.png', (canvas.clientWidth - 50) / 2, (canvas.clientHeight - 50) / 2)
 
 const game = new Game(player)
 
@@ -10,16 +10,21 @@ document.addEventListener('keydown', (event) => {
   // avoid default behaviours from the browser for the arrows
   event.preventDefault();
 
+  if (event.key === ' ') {
+    game.start()
+  }
+
   function keepMovement () {
     switch (event.key) {
       case 'ArrowUp':
         player.newY -=6;
         player.newX = player.x
         player.currentDirection = 'up'
+        player.initialImg.src = '/images/yoshi-up.png'
 
         // to test
         player.horizontalVelocity = 0
-        player.verticalVelocity = -2
+        player.verticalVelocity = -6
 
         player.addWidth = 0
         player.addHeigth = -20
@@ -29,11 +34,12 @@ document.addEventListener('keydown', (event) => {
         player.newY += 6;
         player.newX = player.x
         player.currentDirection = 'down'
+        player.initialImg.src = '/images/yoshi-down.png'
 
         
         // to test
         player.horizontalVelocity = 0
-        player.verticalVelocity = 2
+        player.verticalVelocity = 6
 
         player.addWidth = 0
         player.addHeigth = 20
@@ -42,9 +48,10 @@ document.addEventListener('keydown', (event) => {
         player.newX -=6;
         player.newY = player.y
         player.currentDirection = 'left'
+        player.initialImg.src = '/images/yoshi-left.png'
 
         // to test
-        player.horizontalVelocity = -2
+        player.horizontalVelocity = -6
         player.verticalVelocity = 0
 
         player.addWidth = -20
@@ -55,9 +62,10 @@ document.addEventListener('keydown', (event) => {
         player.newX += 6;
         player.newY = player.y
         player.currentDirection = 'right'
+        player.initialImg.src = '/images/yoshi-right.png'
 
         // To Test
-        player.horizontalVelocity = 2
+        player.horizontalVelocity = 6
         player.verticalVelocity = 0
 
         player.addWidth = 20
@@ -96,6 +104,8 @@ document.addEventListener('keydown', (event) => {
   }
 
 });
+game.firstScreen()
+// game.start()
 
-game.start()
-// game.enemy1.start()
+
+
