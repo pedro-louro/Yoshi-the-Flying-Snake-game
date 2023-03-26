@@ -34,7 +34,7 @@ class PlayerHelp {
     this.x = Math.floor(Math.random() * (canvas.clientWidth - this.width))
   }
   randomY = () => {
-    this.x = Math.floor(Math.random() * (canvas.clientWidth - this.width))
+    this.y = Math.floor(Math.random() * (canvas.clientWidth - this.width))
   }
 
   drop = () => {

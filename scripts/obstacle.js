@@ -88,9 +88,7 @@ class Enemy {
     this.toDrop.forEach(drop => {
     drop[1] += 3
     this.y = drop[1]
-    this.draw()
-    console.log(this.toDrop)
-    
+    this.draw()    
       if (drop[1] > canvas.clientHeight) {
         this.toDrop.shift()
       }

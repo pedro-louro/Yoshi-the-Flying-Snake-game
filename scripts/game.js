@@ -46,6 +46,9 @@ class Game {
     const flower = new PlayerHelp (50, 50, '/images/flower.png', 0, 0, this.player)
     this.flower = flower
 
+    const coin = new PlayerHelp (50, 50, '/images/coin.png', 0, 0, this.player)
+    this.coin = coin
+
   }
 
   firstScreen = () => {
@@ -105,6 +108,7 @@ class Game {
     this.enemy1.fly();
     this.enemy2.drop();
     this.flower.drop();
+    this.coin.drop();
     this.checkColisionMushroom();
     this.checkGameOver();
   }
@@ -157,6 +161,11 @@ class Game {
         this.flower.randomX()
         this.flower.y = 0
         this.flower.toDrop.push([this.flower.x, 0])
+      }
+      if (this.points % 6 === 0) {
+        this.coin.randomX()
+        this.coin.y = 0
+        this.coin.toDrop.push([this.coin.x, this.coin.x])
       }
     }
     else if (this.flower.helpCollision()) {
