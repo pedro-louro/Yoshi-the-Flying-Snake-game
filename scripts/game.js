@@ -160,7 +160,7 @@ class Game {
       }
     }
     else if (this.flower.helpCollision()) {
-      // this.points += 3
+      this.points += 3
       this.flower.toDrop.shift()
     }
     else {
