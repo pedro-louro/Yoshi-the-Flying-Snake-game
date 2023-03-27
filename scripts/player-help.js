@@ -65,15 +65,12 @@ class PlayerHelp {
   }
 
   helpCollision = () => {
-    if (
-      !(this.player.headRight() < this.helpLeft() || 
+    return !(this.player.headRight() < this.helpLeft() || 
       this.player.headLeft() > this.helpRight() ||
       this.player.headUp() > this.helpDown() ||
       this.player.headDown() < this.helpUp())
-      )
-      {
-        return true
-      }
+      
+      
   }
 
 }

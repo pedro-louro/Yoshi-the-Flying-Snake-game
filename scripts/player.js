@@ -84,14 +84,6 @@ class Player {
     //     this.imageSource ++
     //   }
   }
-
-  // rotate = () => {
-  //   ctx.save();
-  //   ctx.translate(canvas.width/2,canvas.height/2);
-  //   ctx.rotate(90*Math.PI/180);
-  //   ctx.drawImage(this.initialImg,-this.initialImg.width/2,-this.initialImg.width/2);
-  //   ctx.restore();
-  // }
   
   draw = () => {    
     switch (this.currentDirection) {

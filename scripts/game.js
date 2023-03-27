@@ -6,6 +6,7 @@ class Game {
     this.points = 0;
     this.status = ''
     this.defaultPlayer = player
+    this.fallingFlowers = []
 
     // TODO: add the following buttons as HTML? 
 //--------------------------------------------
@@ -24,6 +25,10 @@ class Game {
     const gameOver = new Image();
     this.gameOver = gameOver
     gameOver.src = '/images/game-over.png'
+
+    const restart = new Image();
+    this.restart = restart
+    restart.src = '/images/restart-3.png'
 
 //--------------------------------------------
 
@@ -53,11 +58,13 @@ class Game {
 
   firstScreen = () => {
     this.drawBackground()
+    
+    this.controlsButton.addEventListener('load', () => {
+      ctx.drawImage(this.restart, (canvas.clientWidth / 2) - 225, (canvas.clientHeight / 2) - 200, 450, 34)
+    })
     this.startButton.addEventListener('load', () => { 
-      ctx.font = '30px Arial';
-      ctx.fillStyle = 'red';
-      ctx.fillText('Press SPACE to Start', (canvas.clientWidth/2) - 100, (canvas.clientHeight/2) - 250)
-      ctx.drawImage(this.startButton, canvas.clientWidth/2 - 200, canvas.clientHeight/2 - 250)
+      // ctx.fillText('Press SPACE to Start', (canvas.clientWidth/2) - 100, (canvas.clientHeight/2) - 250)
+      ctx.drawImage(this.startButton, canvas.clientWidth/2 - 150, canvas.clientHeight/2 - 85, 300, 170)
     })
     this.arrowsImage.addEventListener('load', () => {
       ctx.drawImage(this.arrowsImage, canvas.clientWidth/2 - 75, canvas.clientHeight/2 +140, 150, 100)
@@ -65,6 +72,7 @@ class Game {
     this.controlsButton.addEventListener('load', () => {
       ctx.drawImage(this.controlsButton, canvas.clientWidth/2 - 75, canvas.clientHeight/2 +50, 175, 125)
     })
+
   }
 
   start = () => {
@@ -82,6 +90,13 @@ class Game {
   drawBackground = () => {
     ctx.drawImage(this.background, 0, 0, canvas.clientWidth, canvas.clientHeight);
   }
+
+  // restart = () => {
+  //   this.status = ''
+  //   this.points = 0
+  //   this.player = this.defaultPlayer
+  //   this.firstScreen()
+  // }
   
   // Initial updateCanvas
 
@@ -102,8 +117,8 @@ class Game {
   updateCanvas = () => {
     this.clear();
     this.drawBackground();
-    this.player.move();
     this.player.draw();
+    this.player.move();
     this.enemy1.moveHorizontal();
     this.enemy1.fly();
     this.enemy2.drop();
@@ -111,7 +126,7 @@ class Game {
     this.coin.drop();
     // this.dropObstacles();
     this.checkColisionMushroom();
-    // this.checkFlowerCollision();
+    this.checkFlowerCollision();
     this.checkGameOver();
   }
 
@@ -127,7 +142,8 @@ class Game {
       {
         this.stop();
         ctx.drawImage(this.gameOver, (canvas.clientWidth / 2) - (this.gameOver.width / 2), (canvas.clientHeight / 2) - (this.gameOver.height / 2))
-        this.status = 'game over'
+        ctx.drawImage(this.restart, (canvas.clientWidth / 2) - 225, (canvas.clientHeight / 2) + 50, 450, 34)
+        this.status = 'game over';
       }
 
     // colision with enemy
@@ -135,16 +151,20 @@ class Game {
       {
         this.stop();
         ctx.drawImage(this.gameOver, (canvas.clientWidth / 2) - (this.gameOver.width / 2), (canvas.clientHeight / 2) - (this.gameOver.height / 2))
-        this.status = 'game over'
-      }
+        ctx.drawImage(this.restart, (canvas.clientWidth / 2) - 225, (canvas.clientHeight / 2) + 50, 450, 34)
+        this.status = 'game over'}
   }
   // TESTS
   checkFlowerCollision = () => {
-    if (this.flower.helpCollision()) {
+    
+   this.fallingFlowers.forEach(flower => {
+     if(flower.helpCollision()) {
       this.flower.toDrop.shift()
+      this.fallingFlowers.pop()
       this.points += 3
       this.score()
-    }
+     } 
+    })
   }
 
   // dropObstacles = () => {
@@ -198,7 +218,7 @@ class Game {
     )
     {
       this.mushroom.randomMushroom();
-      this.points++;
+      this.points +=1;
       this.score();
       this.player.snakeArray.push(
         {
@@ -211,11 +231,11 @@ class Game {
         this.enemy2.y = 0
         this.enemy2.toDrop.push([this.enemy2.x, 0])
       }
-      else if (this.points % 12 === 0) {
+      else if (this.points % 13 === 0) {
+        this.fallingFlowers.push(this.flower)
         this.flower.randomX()
         this.flower.y = 0
         this.flower.toDrop.push([this.flower.x, 0])
-        console.log(this.flower.toDrop)
 
       }
       else if (this.points % 6 === 0) {
@@ -224,13 +244,13 @@ class Game {
         this.coin.toDrop.push([this.coin.x, this.coin.y])
       }
     }
+    // else if (this.flower.helpCollision()) {
+    //   console.log(this.points)
+    //   this.flower.toDrop.shift()
+    //   this.points += 3
+    //   console.log(this.flower.toDrop)
 
-    else if (this.flower.helpCollision()) {
-      this.points += 3
-      this.flower.toDrop.shift()
-      console.log(this.flower.toDrop)
-
-    }
+    // }
 
     else {
       this.mushroom.draw()
