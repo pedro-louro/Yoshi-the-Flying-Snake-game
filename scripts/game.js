@@ -7,6 +7,7 @@ class Game {
     this.status = ''
     this.defaultPlayer = player
     this.fallingFlowers = []
+    this.level = 1
 
     // TODO: add the following buttons as HTML? 
 //--------------------------------------------
@@ -29,6 +30,11 @@ class Game {
     const restart = new Image();
     this.restart = restart
     restart.src = '/images/restart-3.png'
+
+    const levelUp = new Image();
+    this.levelUp = this.level;
+    levelUp.src = '/images/level-up.png'
+
 
 //--------------------------------------------
 
@@ -53,6 +59,7 @@ class Game {
 
     const coin = new PlayerHelp (50, 50, '/images/coin.png', 0, 0, this.player)
     this.coin = coin
+
 
   }
 
@@ -226,12 +233,12 @@ class Game {
           y: (player.snakeArray[this.player.snakeArray.length -1].y + player.addHeigth)
         }
       )
-      if (this.points % 5 === 0) {
+      if (this.points % 4 === 0) {
         this.enemy2.randomX()
         this.enemy2.y = 0
         this.enemy2.toDrop.push([this.enemy2.x, 0])
       }
-      else if (this.points % 13 === 0) {
+      else if (this.points % 11 === 0) {
         this.fallingFlowers.push(this.flower)
         this.flower.randomX()
         this.flower.y = 0
@@ -242,6 +249,9 @@ class Game {
         this.coin.randomX()
         this.coin.y = 0
         this.coin.toDrop.push([this.coin.x, this.coin.y])
+      }
+      else if (this.points % 25 === 0) {
+        this.level ++
       }
     }
     // else if (this.flower.helpCollision()) {
@@ -261,7 +271,7 @@ class Game {
   score = () => {
     ctx.font = '20px Arial';
     ctx.fillStyle = 'black';
-    ctx.fillText(`Score: ${this.points}`, 800, 50)
+    ctx.fillText(`Level ${this.level} Score: ${this.points}`, 730, 50)
   }
 
 }

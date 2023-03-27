@@ -26,7 +26,7 @@ document.addEventListener('keydown', (event) => {
   function keepMovement () {
     switch (event.key) {
       case 'ArrowUp':
-        player.newY -=6;
+        player.newY -= (5 + game.level);
         player.newX = player.x
         player.currentDirection = 'up'
         player.initialImg.src = '/images/yoshi-up.png'
@@ -40,7 +40,7 @@ document.addEventListener('keydown', (event) => {
 
         break;
       case 'ArrowDown':
-        player.newY += 6;
+        player.newY += (5 + game.level);
         player.newX = player.x
         player.currentDirection = 'down'
         player.initialImg.src = '/images/yoshi-down.png'
@@ -54,13 +54,13 @@ document.addEventListener('keydown', (event) => {
         player.addHeigth = 20
         break;
       case 'ArrowLeft':
-        player.newX -=6;
+        player.newX -= (5 + game.level);
         player.newY = player.y
         player.currentDirection = 'left'
         player.initialImg.src = '/images/yoshi-left.png'
 
         // to test
-        player.horizontalVelocity = -6
+        player.horizontalVelocity = (5 + game.level)
         player.verticalVelocity = 0
 
         player.addWidth = -20
@@ -68,7 +68,7 @@ document.addEventListener('keydown', (event) => {
 
         break;
       case 'ArrowRight':
-        player.newX += 6;
+        player.newX += (5 + game.level);
         player.newY = player.y
         player.currentDirection = 'right'
         player.initialImg.src = '/images/yoshi-right.png'
