@@ -109,7 +109,9 @@ class Game {
     this.enemy2.drop();
     this.flower.drop();
     this.coin.drop();
+    // this.dropObstacles();
     this.checkColisionMushroom();
+    // this.checkFlowerCollision();
     this.checkGameOver();
   }
 
@@ -125,7 +127,7 @@ class Game {
       {
         this.stop();
         ctx.drawImage(this.gameOver, (canvas.clientWidth / 2) - (this.gameOver.width / 2), (canvas.clientHeight / 2) - (this.gameOver.height / 2))
-        this.gameOver = 'yes'
+        this.status = 'game over'
       }
 
     // colision with enemy
@@ -133,10 +135,62 @@ class Game {
       {
         this.stop();
         ctx.drawImage(this.gameOver, (canvas.clientWidth / 2) - (this.gameOver.width / 2), (canvas.clientHeight / 2) - (this.gameOver.height / 2))
-        this.gameOver = 'yes'
+        this.status = 'game over'
       }
   }
+  // TESTS
+  checkFlowerCollision = () => {
+    if (this.flower.helpCollision()) {
+      this.flower.toDrop.shift()
+      this.points += 3
+      this.score()
+    }
+  }
 
+  // dropObstacles = () => {
+  //   if (this.points > 1 && this.points % 5 === 0) {
+  //     this.enemy2.randomX()
+  //     this.enemy2.y = 0
+  //     this.enemy2.toDrop.push([this.enemy2.x, 0])
+  //   }
+  //   else if (this.points > 1 && this.points % 6 === 0) {
+  //     this.flower.randomX()
+  //     this.flower.y = 0
+  //     this.flower.toDrop.push([this.flower.x, 0])
+  //   }
+  //   else if (this.points > 1 && this.points % 7 === 0) {
+  //     this.coin.randomX()
+  //     this.coin.y = 0
+  //     this.coin.toDrop.push([this.coin.x, this.coin.y])
+  //   }
+  // }
+
+  // checkColisionMushroom = () => {
+
+  //   if (
+  //     this.mushroom.helpCollision()
+  //   )
+  //   {
+  //     this.mushroom.randomMushroom();
+  //     this.points++;
+  //     this.score();
+  //     this.player.snakeArray.push(
+  //       {
+  //         x: (player.snakeArray[this.player.snakeArray.length -1].x + player.addWidth),
+  //         y: (player.snakeArray[this.player.snakeArray.length -1].y + player.addHeigth)
+  //       }
+  //     )
+  //   }
+  //   else {
+  //     this.mushroom.draw()
+  //     this.score();
+  //   }
+  // }
+    // END TESTS
+
+
+  
+  // V1 Collision
   checkColisionMushroom = () => {
 
     if (
@@ -157,21 +211,27 @@ class Game {
         this.enemy2.y = 0
         this.enemy2.toDrop.push([this.enemy2.x, 0])
       }
-      if (this.points % 11 === 0) {
+      else if (this.points % 12 === 0) {
         this.flower.randomX()
         this.flower.y = 0
         this.flower.toDrop.push([this.flower.x, 0])
+        console.log(this.flower.toDrop)
+
       }
-      if (this.points % 6 === 0) {
+      else if (this.points % 6 === 0) {
         this.coin.randomX()
         this.coin.y = 0
-        this.coin.toDrop.push([this.coin.x, this.coin.x])
+        this.coin.toDrop.push([this.coin.x, this.coin.y])
       }
     }
+
     else if (this.flower.helpCollision()) {
       this.points += 3
       this.flower.toDrop.shift()
+      console.log(this.flower.toDrop)
+
     }
+
     else {
       this.mushroom.draw()
       this.score();

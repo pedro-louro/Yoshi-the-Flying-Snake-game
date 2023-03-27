@@ -111,6 +111,9 @@ document.addEventListener('keydown', (event) => {
     ) {
     return;
   }
+  else if (game.status === 'game over') {
+    return;
+  }
   else{
     keepMovement()
   }
