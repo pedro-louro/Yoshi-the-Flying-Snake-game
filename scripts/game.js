@@ -7,10 +7,17 @@ class Game {
     this.status = ''
     this.defaultPlayer = player
     this.fallingFlowers = []
+    this.fallingEnemy = []
     this.level = 1
 
     // TODO: add the following buttons as HTML? 
 //--------------------------------------------
+    
+
+    const restart = new Image();
+    this.restart = restart
+    restart.src = '/images/restart-3.png'
+    
     const startButton = new Image();
     this.startButton = startButton;
     startButton.src = '/images/start.png';
@@ -27,14 +34,9 @@ class Game {
     this.gameOver = gameOver
     gameOver.src = '/images/game-over.png'
 
-    const restart = new Image();
-    this.restart = restart
-    restart.src = '/images/restart-3.png'
-
     const levelUp = new Image();
     this.levelUp = this.level;
     levelUp.src = '/images/level-up.png'
-
 
 //--------------------------------------------
 
@@ -51,7 +53,7 @@ class Game {
     const enemy1 = new Enemy (80, 80, '/images/turtle-fly-movement/1-removebg-preview.png', 150, 200, this.player)
     this.enemy1 = enemy1
 
-    const enemy2 = new Enemy (50, 50, '/images/turtle-shell.png', 150, 0, this.player)
+    const enemy2 = new Enemy (50, 50, '/images/turtle-shell.png', 0, 0, this.player)
     this.enemy2 = enemy2
 
     const flower = new PlayerHelp (50, 50, '/images/flower.png', 0, 0, this.player)
@@ -59,7 +61,6 @@ class Game {
 
     const coin = new PlayerHelp (50, 50, '/images/coin.png', 0, 0, this.player)
     this.coin = coin
-
 
   }
 
@@ -69,6 +70,7 @@ class Game {
     this.controlsButton.addEventListener('load', () => {
       ctx.drawImage(this.restart, (canvas.clientWidth / 2) - 225, (canvas.clientHeight / 2) - 200, 450, 34)
     })
+
     this.startButton.addEventListener('load', () => { 
       // ctx.fillText('Press SPACE to Start', (canvas.clientWidth/2) - 100, (canvas.clientHeight/2) - 250)
       ctx.drawImage(this.startButton, canvas.clientWidth/2 - 150, canvas.clientHeight/2 - 85, 300, 170)
@@ -131,7 +133,6 @@ class Game {
     this.enemy2.drop();
     this.flower.drop();
     this.coin.drop();
-    // this.dropObstacles();
     this.checkColisionMushroom();
     this.checkFlowerCollision();
     this.checkGameOver();
@@ -156,6 +157,7 @@ class Game {
     // colision with enemy
     else if (this.enemy1.enemyCollision() || this.enemy2.enemyCollision()) 
       {
+        this.fallingEnemy = []
         this.stop();
         ctx.drawImage(this.gameOver, (canvas.clientWidth / 2) - (this.gameOver.width / 2), (canvas.clientHeight / 2) - (this.gameOver.height / 2))
         ctx.drawImage(this.restart, (canvas.clientWidth / 2) - 225, (canvas.clientHeight / 2) + 50, 450, 34)
@@ -234,9 +236,17 @@ class Game {
         }
       )
       if (this.points % 4 === 0) {
+        // V1 working
+        // this.enemy2.randomX()
+        // this.enemy2.y = 0
+        // this.enemy2.toDrop.push([this.enemy2.x, 0])
+
+        // V2
+        this.fallingEnemy.push(this.enemy2)
         this.enemy2.randomX()
         this.enemy2.y = 0
         this.enemy2.toDrop.push([this.enemy2.x, 0])
+
       }
       else if (this.points % 11 === 0) {
         this.fallingFlowers.push(this.flower)

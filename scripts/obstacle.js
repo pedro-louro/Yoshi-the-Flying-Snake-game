@@ -17,9 +17,9 @@ class Enemy {
 
     const imgEnemy = new Image()
     imgEnemy.src = this.imageURL
-    imgEnemy.addEventListener('load', () => {
-      ctx.drawImage(this.imgEnemy, this.x, this.y, this.width, this.height);
-     })
+    // imgEnemy.addEventListener('load', () => {
+    //   ctx.drawImage(this.imgEnemy, this.x, this.y, this.width, this.height);
+    //  })
     this.imgEnemy = imgEnemy
   }
 
