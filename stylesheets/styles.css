@@ -1,24 +1,16 @@
+
 body {
   background: url('/images/wallpaperflare.com_wallpaper.jpg') no-repeat center center fixed;
   background-size: cover;
-  height: auto;
-}
-/* canvas {
-  border: 2px solid black;
-  display: block;
-  margin-top: 10%;
-  margin: auto;
-  padding: auto;  
-} */
-
-.canvas {
-  /* width: 100%; */
-  height: 100%
+  min-height: 100%;
+  min-width: 100%;
 }
 
-/* .machine {
-  width: max-content;
-  display: block;
-  margin: auto;
-  padding: auto;
-} */
+ .canvas {
+  width: 1100px;
+  height: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
