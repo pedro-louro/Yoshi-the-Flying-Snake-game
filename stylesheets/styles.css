@@ -1,11 +1,19 @@
 body {
-  background: url('/images/wallpaperforu-1920x1200.jpeg') no-repeat center center fixed;
+  background: url('/images/wallpaperflare.com_wallpaper.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: auto;
 }
-canvas {
-  /* border: 2px solid black; */
+/* canvas {
+  border: 2px solid black;
   display: block;
+  margin-top: 10%;
   margin: auto;
-  padding: auto;
+  padding: auto;  
+} */
+
+.canvas {
+  /* width: 100%; */
+  height: 100%
 }
 
 /* .machine {
