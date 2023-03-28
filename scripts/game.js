@@ -59,8 +59,8 @@ class Game {
     const flower = new PlayerHelp (50, 50, '/images/flower.png', 0, 0, this.player)
     this.flower = flower
 
-    const coin = new PlayerHelp (50, 50, '/images/coin.png', 0, 0, this.player)
-    this.coin = coin
+    // const coin = new PlayerHelp (50, 50, '/images/coin.png', 0, 0, this.player)
+    // this.coin = coin
 
   }
 
@@ -72,14 +72,13 @@ class Game {
     })
 
     this.startButton.addEventListener('load', () => { 
-      // ctx.fillText('Press SPACE to Start', (canvas.clientWidth/2) - 100, (canvas.clientHeight/2) - 250)
       ctx.drawImage(this.startButton, canvas.clientWidth/2 - 150, canvas.clientHeight/2 - 85, 300, 170)
     })
     this.arrowsImage.addEventListener('load', () => {
-      ctx.drawImage(this.arrowsImage, canvas.clientWidth/2 - 75, canvas.clientHeight/2 +140, 150, 100)
+      ctx.drawImage(this.arrowsImage, canvas.clientWidth/2 +50, canvas.clientHeight/2 +140, 150, 100)
     })
     this.controlsButton.addEventListener('load', () => {
-      ctx.drawImage(this.controlsButton, canvas.clientWidth/2 - 75, canvas.clientHeight/2 +50, 175, 125)
+      ctx.drawImage(this.controlsButton, canvas.clientWidth/2 - 150, canvas.clientHeight/2 +140, 175, 125)
     })
 
   }
@@ -100,29 +99,6 @@ class Game {
     ctx.drawImage(this.background, 0, 0, canvas.clientWidth, canvas.clientHeight);
   }
 
-  // restart = () => {
-  //   this.status = ''
-  //   this.points = 0
-  //   this.player = this.defaultPlayer
-  //   this.firstScreen()
-  // }
-  
-  // Initial updateCanvas
-
-  // updateCanvas = () => {
-  //   this.clear();
-  //   this.drawBackground();
-  //   this.player.move();
-  //   this.player.draw();
-  //   this.enemy1.moveHorizontal();
-  //   this.enemy1.fly();
-  //   this.enemy2.drop();
-  //   this.enemy2.draw()
-  //   this.checkColisionMushroom();
-  //   this.checkGameOver();
-  // }
-
-  // update canvas with enemy drop:
   updateCanvas = () => {
     this.clear();
     this.drawBackground();
@@ -132,7 +108,7 @@ class Game {
     this.enemy1.fly();
     this.enemy2.drop();
     this.flower.drop();
-    this.coin.drop();
+    // this.coin.drop();
     this.checkColisionMushroom();
     this.checkFlowerCollision();
     this.checkGameOver();
@@ -183,6 +159,7 @@ class Game {
     })
   }
 
+
   // V1 Collision
   checkColisionMushroom = () => {
 
@@ -219,16 +196,15 @@ class Game {
         this.flower.toDrop.push([this.flower.x, 0])
 
       }
-      else if (this.points % 6 === 0) {
-        this.coin.randomX()
-        this.coin.y = 0
-        this.coin.toDrop.push([this.coin.x, this.coin.y])
-      }
+      // else if (this.points % 6 === 0) {
+      //   this.coin.randomX()
+      //   this.coin.y = 0
+      //   this.coin.toDrop.push([this.coin.x, this.coin.y])
+      // }
       else if (this.points % 25 === 0) {
         this.level ++
       }
     }
-
     else {
       this.mushroom.draw()
       this.score();
