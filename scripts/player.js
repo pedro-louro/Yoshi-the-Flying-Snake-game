@@ -47,9 +47,8 @@ class Player {
     // this.snakeTail = snakeTail  
 
   }
-
+  
   drawHead = () => {
-    // Initial Idea for drawing Head (static image)
     this.snakeHead.x = this.newX
     this.snakeHead.y = this.newY
 
@@ -67,24 +66,11 @@ class Player {
         this.initialImg.src = '/images/yoshi-right.png'
         break;    
     }
-    
-    ctx.drawImage(this.initialImg, this.snakeHead.x, this.snakeHead.y, this.width, this.height)
-
-    // test FOR MOVING IMAGES
-
-    // if (this.imageSource > 8) {
-    //     this.imageSource = 1
-    //   }
-    //   this.initialImg.src = `/images/mario-fly/mario${this.imageSource}.png`
-    //   ctx.drawImage(this.initialImg, this.snakeHead.x, this.snakeHead.y, this.width, this.height)
-    //   this.imageCounter++
-      
-    //   if (this.imageCounter > 5) {
-    //     this.imageCounter = 0
-    //     this.imageSource ++
-    //   }
-  }
   
+    ctx.drawImage(this.initialImg, this.snakeHead.x, this.snakeHead.y, this.width, this.height)
+  }
+
+
   draw = () => {    
     switch (this.currentDirection) {
       case 'up':
@@ -120,43 +106,11 @@ class Player {
     }
 
     this.snakeArray.forEach(element => {
-      // this.drawHead()
       ctx.drawImage(this.snakeTail, element.x, element.y, this.width, this.height)
     })
     this.drawHead()
-
-    // Initial Version: 
-
-    // if (this.snakeArray.length === 0) {
-    //   this.snakeArray.push({x: this.newX, y: this.newY})
-    //   ctx.drawImage(this.initialImg, this.newX, this.newY, this.width, this.height)
-    // }
-    // else {
-    //   
-    //   
-
-    //   this.snakeArray[0].x = this.newX
-    //   this.snakeArray[0].y = this.newY
-    //   ctx.drawImage(this.initialImg, this.newX, this.newY, this.width, this.height)
-
-
-    //   for (let i = 1; i < this.snakeArray.length; i++) {
-
-    //     let currentX = this.snakeArray[i].x;
-    //     let currentY = this.snakeArray[i].y;
-
-    //     this.snakeArray[i].x = previousX;
-    //     this.snakeArray[i].y = previousY;
-    //     ctx.drawImage(this.initialImg,this.snakeArray[i].x, this.snakeArray[i].y, this.width, this.height)
-        
-    //     previousX = currentX;
-    //     previousY = currentY;
-
-    //   }
-    // }
-
-    
   }
+
   move = () => {
     
     this.x = this.newX;

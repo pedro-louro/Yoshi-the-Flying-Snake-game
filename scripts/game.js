@@ -50,7 +50,7 @@ class Game {
     const mushroom = new PlayerHelp (40, 40, '/images/mario-mushroom-2.png', 200, 400, this.player)
     this.mushroom = mushroom;
 
-    const enemy1 = new Enemy (80, 80, '/images/turtle-fly-movement/1-removebg-preview.png', 150, 200, this.player)
+    const enemy1 = new Enemy (65, 65, '/images/turtle-fly-movement/1-removebg-preview.png', 150, 200, this.player)
     this.enemy1 = enemy1
 
     const enemy2 = new Enemy (50, 50, '/images/turtle-shell.png', 0, 0, this.player)
@@ -172,53 +172,17 @@ class Game {
       this.fallingFlowers.pop()
       this.points += 3
       this.score()
-     } 
+      if (
+        (this.points - 3) % 14 === 0 ||
+        (this.points - 2) % 14 === 0 ||
+        (this.points - 1) % 14 === 0 ||
+        this.points % 14 === 0
+        )
+        {this.level ++}
+     }
     })
   }
 
-  // dropObstacles = () => {
-  //   if (this.points > 1 && this.points % 5 === 0) {
-  //     this.enemy2.randomX()
-  //     this.enemy2.y = 0
-  //     this.enemy2.toDrop.push([this.enemy2.x, 0])
-  //   }
-  //   else if (this.points > 1 && this.points % 6 === 0) {
-  //     this.flower.randomX()
-  //     this.flower.y = 0
-  //     this.flower.toDrop.push([this.flower.x, 0])
-  //   }
-  //   else if (this.points > 1 && this.points % 7 === 0) {
-  //     this.coin.randomX()
-  //     this.coin.y = 0
-  //     this.coin.toDrop.push([this.coin.x, this.coin.y])
-  //   }
-  // }
-
-  // checkColisionMushroom = () => {
-
-  //   if (
-  //     this.mushroom.helpCollision()
-  //   )
-  //   {
-  //     this.mushroom.randomMushroom();
-  //     this.points++;
-  //     this.score();
-  //     this.player.snakeArray.push(
-  //       {
-  //         x: (player.snakeArray[this.player.snakeArray.length -1].x + player.addWidth),
-  //         y: (player.snakeArray[this.player.snakeArray.length -1].y + player.addHeigth)
-  //       }
-  //     )
-  //   }
-  //   else {
-  //     this.mushroom.draw()
-  //     this.score();
-  //   }
-  // }
-    // END TESTS
-
-
-  
   // V1 Collision
   checkColisionMushroom = () => {
 
@@ -264,13 +228,6 @@ class Game {
         this.level ++
       }
     }
-    // else if (this.flower.helpCollision()) {
-    //   console.log(this.points)
-    //   this.flower.toDrop.shift()
-    //   this.points += 3
-    //   console.log(this.flower.toDrop)
-
-    // }
 
     else {
       this.mushroom.draw()
