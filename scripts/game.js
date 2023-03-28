@@ -149,10 +149,10 @@ class Game {
       this.points += 3
       this.score()
       if (
-        (this.points - 3) % 14 === 0 ||
-        (this.points - 2) % 14 === 0 ||
-        (this.points - 1) % 14 === 0 ||
-        this.points % 14 === 0
+        (this.points - 3) % 25 === 0 ||
+        (this.points - 2) % 25 === 0 ||
+        (this.points - 1) % 25 === 0 ||
+        this.points % 25 === 0
         )
         {this.level ++}
      }
