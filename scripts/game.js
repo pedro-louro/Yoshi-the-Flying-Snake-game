@@ -206,7 +206,7 @@ class Game {
         this.score();
       }
     }
-    
+
     else {
       this.mushroom.draw()
       this.score();
