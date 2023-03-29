@@ -88,7 +88,7 @@ class Game {
   }
 
   start = () => {
-    this.interval = setInterval(this.updateCanvas, 15)
+    this.interval = setInterval(this.updateCanvas, 20)
   };
 
   stop = () => {
@@ -160,8 +160,9 @@ class Game {
         )
         {
           this.level ++
-          this.enemy1.horizontalSpeed ++
-          this.enemy2.verticalSpeed ++
+          this.enemy1.level ++
+          this.enemy2.level ++
+          this.score();
         }
      }
     })
@@ -185,12 +186,6 @@ class Game {
         }
       )
       if (this.points % 4 === 0) {
-        // V1 working
-        // this.enemy2.randomX()
-        // this.enemy2.y = 0
-        // this.enemy2.toDrop.push([this.enemy2.x, 0])
-
-        // V2
         this.fallingEnemy.push(this.enemy2)
         this.enemy2.randomX()
         this.enemy2.y = 0
@@ -204,17 +199,14 @@ class Game {
         this.flower.toDrop.push([this.flower.x, 0])
 
       }
-      // else if (this.points % 6 === 0) {
-      //   this.coin.randomX()
-      //   this.coin.y = 0
-      //   this.coin.toDrop.push([this.coin.x, this.coin.y])
-      // }
       else if (this.points % 25 === 0) {
         this.level ++
-        this.enemy1.horizontalSpeed ++
-        this.enemy2.verticalSpeed ++
+        this.enemy1.level ++
+        this.enemy2.level ++
+        this.score();
       }
     }
+    
     else {
       this.mushroom.draw()
       this.score();

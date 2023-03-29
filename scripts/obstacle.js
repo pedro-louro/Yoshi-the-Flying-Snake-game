@@ -6,8 +6,7 @@ class Enemy {
     this.y = y;
     this.imageURL = imageURL;
     this.player = player
-    // this.newX = x;
-    // this.newY = y;
+    this.level = 1
     this.horizontalSpeed = 1
     this.verticalSpeed = 1
     this.imageSource = 1;
@@ -60,13 +59,11 @@ class Enemy {
 
   moveHorizontal = () => {
     if (this.enemyRight() > canvas.clientWidth) {
-      // this.x += this.horizontalSpeed
-      this.horizontalSpeed *= -1;
+      this.horizontalSpeed = -1 - this.level;
       this.imgEnemy.src = '/images/bullet-left.png'
     }
     else if (this.enemyLeft() < 0) {
-      // this.x += this.horizontalSpeed
-      this.horizontalSpeed *= -1;
+      this.horizontalSpeed = 1 + this.level;
       this.imgEnemy.src = '/images/bullet-right.png'
     }
     this.x += this.horizontalSpeed
