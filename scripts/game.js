@@ -51,7 +51,8 @@ class Game {
     const mushroom = new PlayerHelp (40, 40, '/images/mario-mushroom-2.png', 200, 400, this.player)
     this.mushroom = mushroom;
 
-    const enemy1 = new Enemy (65, 65, '/images/turtle-fly-movement/1-removebg-preview.png', 150, 200, this.player)
+    // const enemy1 = new Enemy (65, 65, '/images/turtle-fly-movement/1-removebg-preview.png', 150, 200, this.player)
+    const enemy1 = new Enemy (65, 65, '/images/bullet-right.png', 150, 200, this.player)
     this.enemy1 = enemy1
 
     const enemy2 = new Enemy (50, 50, '/images/turtle-shell.png', -100, -100, this.player)
@@ -108,7 +109,7 @@ class Game {
     this.player.draw();
     this.player.move();
     this.enemy1.moveHorizontal();
-    this.enemy1.fly();
+    // this.enemy1.fly();
     this.enemy2.drop();
     this.flower.drop();
     // this.coin.drop();
@@ -157,7 +158,11 @@ class Game {
         (this.points - 1) % 25 === 0 ||
         this.points % 25 === 0
         )
-        {this.level ++}
+        {
+          this.level ++
+          this.enemy1.horizontalSpeed ++
+          this.enemy2.verticalSpeed ++
+        }
      }
     })
   }
@@ -206,6 +211,8 @@ class Game {
       // }
       else if (this.points % 25 === 0) {
         this.level ++
+        this.enemy1.horizontalSpeed ++
+        this.enemy2.verticalSpeed ++
       }
     }
     else {
