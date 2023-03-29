@@ -33,11 +33,11 @@ class Player {
     this.snakeTail = snakeTail
     
     initialImg.addEventListener('load', () => {
-      ctx.drawImage(this.initialImg, this.x, this.y, this.width, this.height);
+      // ctx.drawImage(this.initialImg, this.x, this.y, this.width, this.height);
     })
 
     snakeTail.addEventListener('load', () => {
-      ctx.drawImage(this.snakeTail, this.x, this.y, this.width, this.height);
+      // ctx.drawImage(this.snakeTail, this.x, this.y, this.width, this.height);
     })
     // this.snakeArray.push([this.initialImg, this.x, this.y])
     // console.log(this.snakeArray)

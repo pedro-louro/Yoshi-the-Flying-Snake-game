@@ -20,7 +20,7 @@ class Game {
     
     const startButton = new Image();
     this.startButton = startButton;
-    startButton.src = '/images/start.png';
+    startButton.src = '/images/game-logo.png';
     
     const controlsButton = new Image();
     this.controlsButton = controlsButton;
@@ -53,7 +53,7 @@ class Game {
     const enemy1 = new Enemy (65, 65, '/images/turtle-fly-movement/1-removebg-preview.png', 150, 200, this.player)
     this.enemy1 = enemy1
 
-    const enemy2 = new Enemy (50, 50, '/images/turtle-shell.png', 0, 0, this.player)
+    const enemy2 = new Enemy (50, 50, '/images/turtle-shell.png', -100, -100, this.player)
     this.enemy2 = enemy2
 
     const flower = new PlayerHelp (50, 50, '/images/flower.png', 0, 0, this.player)
@@ -72,7 +72,7 @@ class Game {
     })
 
     this.startButton.addEventListener('load', () => { 
-      ctx.drawImage(this.startButton, canvas.clientWidth/2 - 150, canvas.clientHeight/2 - 85, 300, 170)
+      ctx.drawImage(this.startButton, canvas.clientWidth/2 - 290, canvas.clientHeight/2 - 157, 580, 315)
     })
     this.arrowsImage.addEventListener('load', () => {
       ctx.drawImage(this.arrowsImage, canvas.clientWidth/2 +50, canvas.clientHeight/2 +140, 150, 100)
