@@ -84,7 +84,7 @@ class Enemy {
 
   drop = () => {
     this.toDrop.forEach(drop => {
-    drop[1] += 1 + this.verticalSpeed
+    drop[1] += 1 + this.level
     this.y = drop[1]
     this.draw()    
       if (drop[1] > canvas.clientHeight) {
