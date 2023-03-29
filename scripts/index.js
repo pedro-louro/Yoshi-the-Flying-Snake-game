@@ -30,7 +30,7 @@ document.addEventListener('keydown', (event) => {
         player.newY -= (3 + game.level);
         player.newX = player.x
         player.currentDirection = 'up'
-        player.initialImg.src = '/images/yoshi-up.png'
+        // player.initialImg.src = '/images/yoshi-up.png'
 
         // to test
         // player.horizontalVelocity = 0
@@ -44,7 +44,7 @@ document.addEventListener('keydown', (event) => {
         player.newY += (3 + game.level);
         player.newX = player.x
         player.currentDirection = 'down'
-        player.initialImg.src = '/images/yoshi-down.png'
+        // player.initialImg.src = '/images/yoshi-down.png'
 
         
         // to test
@@ -58,7 +58,7 @@ document.addEventListener('keydown', (event) => {
         player.newX -= (3 + game.level);
         player.newY = player.y
         player.currentDirection = 'left'
-        player.initialImg.src = '/images/yoshi-left.png'
+        // player.initialImg.src = '/images/yoshi-left.png'
 
         // to test
         // player.horizontalVelocity = (5 + game.level)
@@ -72,7 +72,7 @@ document.addEventListener('keydown', (event) => {
         player.newX += (3 + game.level);
         player.newY = player.y
         player.currentDirection = 'right'
-        player.initialImg.src = '/images/yoshi-right.png'
+        // player.initialImg.src = '/images/yoshi-right.png'
 
         // To Test
         // player.horizontalVelocity = 6

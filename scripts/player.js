@@ -14,26 +14,43 @@ class Player {
     // for drawing moving player
     this.imageSource = 1;
     this.imageCounter = 0;
+    
 
     this.addWidth = 20
     this.addHeigth = 20
 
 
-    const initialImg = new Image()
-    initialImg.src = this.imageURL
-    this.initialImg = initialImg
+    // const initialImg = new Image()
+    // initialImg.src = this.imageURL
+    // this.initialImg = initialImg
+    
+    const initialImgRight = new Image()
+    initialImgRight.src = '/images/yoshi-right.png'
+    this.initialImgRight = initialImgRight
+
+    const initialImgLeft = new Image()
+    initialImgLeft.src = '/images/yoshi-left.png'
+    this.initialImgLeft = initialImgLeft
+
+    const initialImgUp = new Image()
+    initialImgUp.src = '/images/yoshi-up.png'
+    this.initialImgUp = initialImgUp
+
+    const initialDown = new Image()
+    initialDown.src = '/images/yoshi-down.png'
+    this.initialDown = initialDown
 
     const snakeTail = new Image()
     snakeTail.src = ''
     this.snakeTail = snakeTail
     
-    initialImg.addEventListener('load', () => {
-      // ctx.drawImage(this.initialImg, this.x, this.y, this.width, this.height);
-    })
+    // initialImg.addEventListener('load', () => {
+    //   // ctx.drawImage(this.initialImg, this.x, this.y, this.width, this.height);
+    // })
 
-    snakeTail.addEventListener('load', () => {
-      // ctx.drawImage(this.snakeTail, this.x, this.y, this.width, this.height);
-    })
+    // snakeTail.addEventListener('load', () => {
+    //   // ctx.drawImage(this.snakeTail, this.x, this.y, this.width, this.height);
+    // })
 
   }
   
@@ -43,20 +60,24 @@ class Player {
 
     switch (this.currentDirection) {
       case 'up':
-        this.initialImg.src = '/images/yoshi-up.png'
+        // this.initialImg.src = '/images/yoshi-up.png'
+        ctx.drawImage(this.initialImgUp, this.snakeHead.x, this.snakeHead.y, this.width, this.height)
         break;
       case 'down':
-        this.initialImg.src = '/images/yoshi-down.png'
+        // this.initialImg.src = '/images/yoshi-down.png'
+        ctx.drawImage(this.initialDown, this.snakeHead.x, this.snakeHead.y, this.width, this.height)
         break;
       case 'left':
-        this.initialImg.src = '/images/yoshi-left.png'
+        // this.initialImg.src = '/images/yoshi-left.png'
+        ctx.drawImage(this.initialImgLeft, this.snakeHead.x, this.snakeHead.y, this.width, this.height)
         break;
       case 'right':
-        this.initialImg.src = '/images/yoshi-right.png'
+        // this.initialImg.src = '/images/yoshi-right.png'
+        ctx.drawImage(this.initialImgRight, this.snakeHead.x, this.snakeHead.y, this.width, this.height)
         break;    
     }
   
-    ctx.drawImage(this.initialImg, this.snakeHead.x, this.snakeHead.y, this.width, this.height)
+    // ctx.drawImage(this.initialImg, this.snakeHead.x, this.snakeHead.y, this.width, this.height)
   }
 
 
