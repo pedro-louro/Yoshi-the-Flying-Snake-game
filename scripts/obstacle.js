@@ -6,20 +6,20 @@ class Enemy {
     this.y = y;
     this.imageURL = imageURL;
     this.player = player
-    this.newX = x;
-    this.newY = y;
+    // this.newX = x;
+    // this.newY = y;
     this.horizontalSpeed = 1
     this.verticalSpeed = 1
     this.imageSource = 1;
     this.imageCounter = 0;
-    this.points = 0
+    // this.points = 0
     this.toDrop = []
 
     const imgEnemy = new Image()
     imgEnemy.src = this.imageURL
-    // imgEnemy.addEventListener('load', () => {
-    //   ctx.drawImage(this.imgEnemy, this.x, this.y, this.width, this.height);
-    //  })
+    imgEnemy.addEventListener('load', () => {
+      ctx.drawImage(this.imgEnemy, this.x, this.y, this.width, this.height);
+     })
     this.imgEnemy = imgEnemy
   }
 
@@ -28,7 +28,7 @@ class Enemy {
   }
 
   start = () => {
-    this.interval = setInterval(this.fly, 50)
+    this.interval = setInterval(this.fly, 20)
   };
 
   fly = () => {  
@@ -39,11 +39,10 @@ class Enemy {
     ctx.drawImage(this.imgEnemy, this.x, this.y, this.width, this.height)
     this.imageCounter++
     
-    if (this.imageCounter > 3) {
+    if (this.imageCounter > 5) {
       this.imageCounter = 0
       this.imageSource ++
     }
-    
   }
   
   random = () => {
@@ -83,8 +82,6 @@ class Enemy {
   }
 
   drop = () => {
-    // this.y += 3
-    // this.draw()
     this.toDrop.forEach(drop => {
     drop[1] += 3
     this.y = drop[1]
