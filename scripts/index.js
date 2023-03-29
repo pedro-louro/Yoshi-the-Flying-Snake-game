@@ -27,56 +27,56 @@ document.addEventListener('keydown', (event) => {
   function keepMovement () {
     switch (event.key) {
       case 'ArrowUp':
-        player.newY -= (5 + game.level);
+        player.newY -= (4 + game.level);
         player.newX = player.x
         player.currentDirection = 'up'
         player.initialImg.src = '/images/yoshi-up.png'
 
         // to test
-        player.horizontalVelocity = 0
-        player.verticalVelocity = -6
+        // player.horizontalVelocity = 0
+        // player.verticalVelocity = -6
 
         player.addWidth = 0
         player.addHeigth = -20
 
         break;
       case 'ArrowDown':
-        player.newY += (5 + game.level);
+        player.newY += (4 + game.level);
         player.newX = player.x
         player.currentDirection = 'down'
         player.initialImg.src = '/images/yoshi-down.png'
 
         
         // to test
-        player.horizontalVelocity = 0
-        player.verticalVelocity = 6
+        // player.horizontalVelocity = 0
+        // player.verticalVelocity = 6
 
         player.addWidth = 0
         player.addHeigth = 20
         break;
       case 'ArrowLeft':
-        player.newX -= (5 + game.level);
+        player.newX -= (4 + game.level);
         player.newY = player.y
         player.currentDirection = 'left'
         player.initialImg.src = '/images/yoshi-left.png'
 
         // to test
-        player.horizontalVelocity = (5 + game.level)
-        player.verticalVelocity = 0
+        // player.horizontalVelocity = (5 + game.level)
+        // player.verticalVelocity = 0
 
         player.addWidth = -20
         player.addHeigth = 0
 
         break;
       case 'ArrowRight':
-        player.newX += (5 + game.level);
+        player.newX += (4 + game.level);
         player.newY = player.y
         player.currentDirection = 'right'
         player.initialImg.src = '/images/yoshi-right.png'
 
         // To Test
-        player.horizontalVelocity = 6
-        player.verticalVelocity = 0
+        // player.horizontalVelocity = 6
+        // player.verticalVelocity = 0
 
         player.addWidth = 20
         player.addHeigth = 0

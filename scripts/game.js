@@ -43,6 +43,7 @@ class Game {
     const background = new Image();
     background.src = 'https://st3.depositphotos.com/29384342/35129/v/450/depositphotos_351298026-stock-illustration-old-game-background-classic-retro.jpg'
     this.background = background
+    
     this.background.addEventListener('load', () => {
       ctx.drawImage(this.background, 0, 0, canvas.clientWidth, canvas.clientHeight);
     })
@@ -62,9 +63,11 @@ class Game {
     // const coin = new PlayerHelp (50, 50, '/images/coin.png', 0, 0, this.player)
     // this.coin = coin
 
+
   }
 
   firstScreen = () => {
+
     this.drawBackground()
     
     this.controlsButton.addEventListener('load', () => {
@@ -84,7 +87,7 @@ class Game {
   }
 
   start = () => {
-    this.interval = setInterval(this.updateCanvas, 20)
+    this.interval = setInterval(this.updateCanvas, 15)
   };
 
   stop = () => {

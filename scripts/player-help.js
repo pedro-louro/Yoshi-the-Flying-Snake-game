@@ -5,10 +5,11 @@ class PlayerHelp {
     this.x = x;
     this.y = y;
     this.imageURL = imageURL;
-    this.newX = x;
-    this.newY = y;
     this.toDrop = []
     this.player = player
+
+     // this.newX = x;
+    // this.newY = y;
 
     const imgHelp = new Image()
     imgHelp.src = this.imageURL

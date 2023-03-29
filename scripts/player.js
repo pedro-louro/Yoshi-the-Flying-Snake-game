@@ -11,19 +11,14 @@ class Player {
     this.snakeHead = {x: x, y: y}
     this.snakeArray = [{x: x - width, y: y}];
     this.currentDirection = ''
-
     // for drawing moving player
     this.imageSource = 1;
     this.imageCounter = 0;
 
-    // for testing
-    this.horizontalVelocity = 3;
-    this.verticalVelocity = 3;
-
     this.addWidth = 20
     this.addHeigth = 20
 
-    // Test ends
+
     const initialImg = new Image()
     initialImg.src = this.imageURL
     this.initialImg = initialImg
@@ -39,12 +34,6 @@ class Player {
     snakeTail.addEventListener('load', () => {
       // ctx.drawImage(this.snakeTail, this.x, this.y, this.width, this.height);
     })
-    // this.snakeArray.push([this.initialImg, this.x, this.y])
-    // console.log(this.snakeArray)
-
-    // const snakeTail = new Image()
-    // snakeTail.src = '/images/snake-tail.png'
-    // this.snakeTail = snakeTail  
 
   }
   
@@ -96,8 +85,6 @@ class Player {
     for (let i = 1; i < this.snakeArray.length; i++) {
       let currentX = this.snakeArray[i].x;
       let currentY = this.snakeArray[i].y;
-/*       this.snakeArray[i].x = this.snakeArray[i-1].x + this.horizontalVelocity
-      this.snakeArray[i].y = this.snakeArray[i-1].y + this.verticalVelocity */
       
       this.snakeArray[i].x = previousX;
       this.snakeArray[i].y = previousY;
