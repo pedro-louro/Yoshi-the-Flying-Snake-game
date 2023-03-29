@@ -2,6 +2,7 @@
 const canvas = document.getElementById('snake')
 const ctx = canvas.getContext('2d')
 
+
 let player = new Player(60, 50, '/images/yoshi-right.png', (canvas.clientWidth - 50) / 2, (canvas.clientHeight - 50) / 2)
 let game = new Game(player)
 
