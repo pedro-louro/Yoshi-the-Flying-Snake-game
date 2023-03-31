@@ -6,7 +6,7 @@ const ctx = canvas.getContext('2d')
 let player = new Player(60, 50, '/images/yoshi-right.png', (canvas.clientWidth - 50) / 2, ((canvas.clientHeight - 50) / 2) + 100)
 let game = new Game(player)
 
-game.firstScreen()
+// game.firstScreen()
 
 document.addEventListener('keydown', (event) => {
   // avoid default behaviours from the browser for the arrows

@@ -10,10 +10,7 @@ class Game {
     this.fallingEnemy = []
     this.level = 1
 
-    // TODO: add the following buttons as HTML? 
 //--------------------------------------------
-    
-
     const restart = new Image();
     this.restart = restart
     restart.src = '/images/restart-3.png'
@@ -64,17 +61,10 @@ class Game {
     // const coin = new PlayerHelp (50, 50, '/images/coin.png', 0, 0, this.player)
     // this.coin = coin
 
-
-  }
-
-  firstScreen = () => {
-
-    this.drawBackground()
-    
-    this.controlsButton.addEventListener('load', () => {
+    this.restart.addEventListener('load', () => {
       ctx.drawImage(this.restart, (canvas.clientWidth / 2) - 225, (canvas.clientHeight / 2) - 200, 450, 34)
     })
-
+  
     this.startButton.addEventListener('load', () => { 
       ctx.drawImage(this.startButton, canvas.clientWidth/2 - 290, canvas.clientHeight/2 - 157, 580, 315)
     })
@@ -86,6 +76,26 @@ class Game {
     })
 
   }
+
+  // firstScreen = () => {
+
+  //   this.drawBackground()
+    
+  //   this.controlsButton.addEventListener('load', () => {
+  //     ctx.drawImage(this.restart, (canvas.clientWidth / 2) - 225, (canvas.clientHeight / 2) - 200, 450, 34)
+  //   })
+
+  //   this.startButton.addEventListener('load', () => { 
+  //     ctx.drawImage(this.startButton, canvas.clientWidth/2 - 290, canvas.clientHeight/2 - 157, 580, 315)
+  //   })
+  //   this.arrowsImage.addEventListener('load', () => {
+  //     ctx.drawImage(this.arrowsImage, canvas.clientWidth/2 +50, canvas.clientHeight/2 +140, 150, 100)
+  //   })
+  //   // this.controlsButton.addEventListener('load', () => {
+  //   //   ctx.drawImage(this.controlsButton, canvas.clientWidth/2 - 150, canvas.clientHeight/2 +140, 175, 125)
+  //   // })
+
+  // }
 
   start = () => {
     this.interval = setInterval(this.updateCanvas, 20)
