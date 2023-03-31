@@ -11,21 +11,50 @@ class Game {
     this.level = 1
 
 //--------------------------------------------
+    const background = new Image();
+    background.src = 'https://st3.depositphotos.com/29384342/35129/v/450/depositphotos_351298026-stock-illustration-old-game-background-classic-retro.jpg'
+    this.background = background
+
+    background.addEventListener('load', () => {
+      ctx.drawImage(this.background, 0, 0, canvas.clientWidth, canvas.clientHeight);
+    })
+
+    // img.addEventListener('load', () => {
+    //   // once the image is loaded, draw it
+    //   this.loaded = true
+    //   this.img = img
+    //   this.draw()
+    // })
+    // img.src = 'https://media.giphy.com/media/Qr8JE9Hvi7ave/200.gif'
+      
     const restart = new Image();
     this.restart = restart
     restart.src = '/images/restart-3.png'
+    restart.addEventListener('load', () => {
+      ctx.drawImage(this.restart, (canvas.clientWidth / 2) - 225, (canvas.clientHeight / 2) - 200, 450, 34)
+    })
     
     const startButton = new Image();
     this.startButton = startButton;
     startButton.src = '/images/game-logo.png';
+    startButton.addEventListener('load', () => { 
+      ctx.drawImage(this.startButton, canvas.clientWidth/2 - 290, canvas.clientHeight/2 - 157, 580, 315)
+    })
     
     const controlsButton = new Image();
     this.controlsButton = controlsButton;
     controlsButton.src = '/images/controls-button.png';
+    controlsButton.addEventListener('load', () => {
+      ctx.drawImage(this.controlsButton, canvas.clientWidth/2 - 150, canvas.clientHeight/2 +140, 175, 125)
+    })
+    
 
     const arrowsImage = new Image();
     arrowsImage.src = '/images/arrows.png';
     this.arrowsImage = arrowsImage;
+    arrowsImage.addEventListener('load', () => {
+      ctx.drawImage(this.arrowsImage, canvas.clientWidth/2 +50, canvas.clientHeight/2 +140, 150, 100)
+    })
 
     const gameOver = new Image();
     this.gameOver = gameOver
@@ -37,13 +66,19 @@ class Game {
 
 //--------------------------------------------
 
-    const background = new Image();
-    background.src = 'https://st3.depositphotos.com/29384342/35129/v/450/depositphotos_351298026-stock-illustration-old-game-background-classic-retro.jpg'
-    this.background = background
-    
-    this.background.addEventListener('load', () => {
-      ctx.drawImage(this.background, 0, 0, canvas.clientWidth, canvas.clientHeight);
-    })
+    // this.restart.addEventListener('load', () => {
+    //   ctx.drawImage(this.restart, (canvas.clientWidth / 2) - 225, (canvas.clientHeight / 2) - 200, 450, 34)
+    // })
+  
+    // this.startButton.addEventListener('load', () => { 
+    //   ctx.drawImage(this.startButton, canvas.clientWidth/2 - 290, canvas.clientHeight/2 - 157, 580, 315)
+    // })
+    // this.arrowsImage.addEventListener('load', () => {
+    //   ctx.drawImage(this.arrowsImage, canvas.clientWidth/2 +50, canvas.clientHeight/2 +140, 150, 100)
+    // })
+    // this.controlsButton.addEventListener('load', () => {
+    //   ctx.drawImage(this.controlsButton, canvas.clientWidth/2 - 150, canvas.clientHeight/2 +140, 175, 125)
+    // })
 
     const mushroom = new PlayerHelp (40, 40, '/images/mario-mushroom-2.png', 200, 400, this.player)
     this.mushroom = mushroom;
@@ -60,20 +95,6 @@ class Game {
 
     // const coin = new PlayerHelp (50, 50, '/images/coin.png', 0, 0, this.player)
     // this.coin = coin
-
-    this.restart.addEventListener('load', () => {
-      ctx.drawImage(this.restart, (canvas.clientWidth / 2) - 225, (canvas.clientHeight / 2) - 200, 450, 34)
-    })
-  
-    this.startButton.addEventListener('load', () => { 
-      ctx.drawImage(this.startButton, canvas.clientWidth/2 - 290, canvas.clientHeight/2 - 157, 580, 315)
-    })
-    this.arrowsImage.addEventListener('load', () => {
-      ctx.drawImage(this.arrowsImage, canvas.clientWidth/2 +50, canvas.clientHeight/2 +140, 150, 100)
-    })
-    this.controlsButton.addEventListener('load', () => {
-      ctx.drawImage(this.controlsButton, canvas.clientWidth/2 - 150, canvas.clientHeight/2 +140, 175, 125)
-    })
 
   }
 
