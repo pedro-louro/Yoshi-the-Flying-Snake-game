@@ -18,32 +18,24 @@ class Game {
     background.addEventListener('load', () => {
       ctx.drawImage(this.background, 0, 0, canvas.clientWidth, canvas.clientHeight);
     })
-
-    // img.addEventListener('load', () => {
-    //   // once the image is loaded, draw it
-    //   this.loaded = true
-    //   this.img = img
-    //   this.draw()
-    // })
-    // img.src = 'https://media.giphy.com/media/Qr8JE9Hvi7ave/200.gif'
       
     const restart = new Image();
-    this.restart = restart
     restart.src = '/images/restart-3.png'
+    this.restart = restart
     restart.addEventListener('load', () => {
       ctx.drawImage(this.restart, (canvas.clientWidth / 2) - 225, (canvas.clientHeight / 2) - 200, 450, 34)
     })
     
     const startButton = new Image();
-    this.startButton = startButton;
     startButton.src = '/images/game-logo.png';
+    this.startButton = startButton;
     startButton.addEventListener('load', () => { 
       ctx.drawImage(this.startButton, canvas.clientWidth/2 - 290, canvas.clientHeight/2 - 157, 580, 315)
     })
     
     const controlsButton = new Image();
-    this.controlsButton = controlsButton;
     controlsButton.src = '/images/controls-button.png';
+    this.controlsButton = controlsButton;
     controlsButton.addEventListener('load', () => {
       ctx.drawImage(this.controlsButton, canvas.clientWidth/2 - 150, canvas.clientHeight/2 +140, 175, 125)
     })
@@ -51,10 +43,11 @@ class Game {
 
     const arrowsImage = new Image();
     arrowsImage.src = '/images/arrows.png';
-    this.arrowsImage = arrowsImage;
     arrowsImage.addEventListener('load', () => {
-      ctx.drawImage(this.arrowsImage, canvas.clientWidth/2 +50, canvas.clientHeight/2 +140, 150, 100)
+      ctx.drawImage(arrowsImage, canvas.clientWidth/2 +50, canvas.clientHeight/2 +140, 150, 100)
     })
+    this.arrowsImage = arrowsImage;
+
 
     const gameOver = new Image();
     this.gameOver = gameOver
